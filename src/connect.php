@@ -1,5 +1,13 @@
 <?php include '_header.php';
+$title = 'TransportMe';
 ?>
+<body id="index">
+  <header class="main">
+    <img src="img/LogoWhite.png" alt="Logo">
+    <nav>
+      <!-- <h1>L'application socialement responsable</h1> -->
+    </nav>
+  </header>
     <div class="container">
       <article class="connect">
         <form class="form-connect" action="index.html" method="post">
