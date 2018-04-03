@@ -6,6 +6,7 @@
 2 - gem install sass
 3 - dans le répertoire css ouvrir cmd et : sass --watch sass/style.scss:style.css
 
+https://snazzymaps.com/editor <== outil permettant la modification du style de Gmaps
 
 
 
