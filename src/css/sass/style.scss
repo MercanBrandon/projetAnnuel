@@ -12,6 +12,8 @@ body{
   width : 100%;
   margin : 0px;
   background-image: url("../img/Pont-de-Normandie-03.jpg");
+  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 h1{
@@ -48,11 +50,27 @@ div.container{
   margin-top: 50px;
   padding: 7px;
   background-color: $couleur;
+
+  h2{
+    color: white;
+    text-align: center;
+  }
+
   form.form-connect input{
     display: block;
     margin: auto;
     padding: 10px;
     width: 80%;
-    
+    }
+
+    form.form-connect input[type=submit]{
+      width: 45%;
+      margin-left: 48%;
+      margin-right: 10px;
+      background-color: #cdcdcd;
+      color: #111314;
+      border-radius: 20px;
+      font-size: 1.2em;
+    }
+
   }
-}
