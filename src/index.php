@@ -1,33 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/style.css">
-    <title>TransportMe</title>
-  </head>
-  <body id="index">
-    <header class="main">
-      <img src="img/LogoWhite.png" alt="Logo">
-      <nav>
-        <!-- <h1>L'application socialement responsable</h1> -->
-      </nav>
-    </header>
-    <div class="container">
-      <article class="connect">
-        <form class="form-connect" action="index.html" method="post">
-          <p><input type="text" name="mail" value="" placeholder="e-mail"></p>
-          <p><input type="password" name="password" value="" placeholder="password"></p>
-          <p><input type="submit" name="submit" value="Se Connecter"></p>
-        </form>
+<?php
+// if (!isset($_SESSION)) {
+//   if (empty($_SESSION)) {
+//     header('Location: http://127.0.0.1/edsa-TrandportMe/src/connect.php');
+//   }
+// }
+include '_header.php';
+$title = 'Simple Map';
 
-      </article>
-      <aside class="">
-
-      </aside>
-    </div>
-    <footer></footer>
-
-
-  </body>
+ ?>
+<body>
+ <div id="map"></div>
+ <script>
+   var map;
+   function initMap() {
+     map = new google.maps.Map(document.getElementById('map'), {
+       center: {lat: 15.2798157, lng: -61.3357894},
+       zoom: 8
+     });
+   }
+ </script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&callback=initMap"
+ async defer></script>
+</body>
 </html>
