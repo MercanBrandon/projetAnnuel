@@ -7,7 +7,7 @@
     <title>Inscription -TransportMe</title>
   </head>
   <body>
-    <?php require('header.php'); ?>
+    <?php require('_header.php'); ?>
       <div id="container">
         <div class="text-carousel">
         <div class="carousel">
@@ -152,7 +152,7 @@
         </div>
       </div>
 
-      
+
     <?php require('bloc-chauffeur.php'); ?>
     <?php require('bloc-client.php'); ?>
     <?php require('footer.php'); ?>
