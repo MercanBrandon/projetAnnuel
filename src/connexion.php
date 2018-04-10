@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="public/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Roboto+Condensed" rel="stylesheet">
-<title>TransportMe</title>
-</head>
-<body id="index"> 
-<?php require('header.php'); ?>
-<div class="bloc-co">
-        <form class="formCo" action="index.html" method="post">
+<?php require('_header.php'); ?>
+<div class="container">
+  <article class="connect">
+        <form class="form-connect" action="index.html" method="post">
             <h2>Connexion</h2>
             <p><input type="text" name="mail" value="" placeholder="e-mail"></p>
             <p><input type="password" name="password" value="" placeholder="password"></p>
-            <p><input type="submit" name="submit" value="Se Connecter"></p>
+            <p> <a href="#" onclick="inscription()">Creer son compte</a> <input type="submit" name="submit" value="Se Connecter"></p>
         </form>
-
         <div id="form-inscription">
-          <h2>Inscription</h2>
-          <form class="formInscription" action="index.html" method="post">
-            <p>
+          <form class="form-connect" action="index.html" method="post">
+            <h2>Inscription</h2>
+            <!-- <p>
               <select name="types" id="type">
                 <option value="votre-type">Choisissez votre status</option>
                 <option value="Chauffeur">Chauffeur</option>
                 <option value="Consomateur">Consomateur</option>
               </select>
-            </p>
+            </p> -->
             <p><input name="mail" type="text" id="mail" placeholder="Entrez votre Email" /></p>
 
             <p><input name="nom" type="text" id="nom" placeholder="Entrez votre Nom"/></p>
@@ -35,7 +25,7 @@
 
             <p><input name="age" type="text" id="age" placeholder="Entrez votre Age" /></p>
 
-            <p>
+            <!-- <p>
               <select name="villes" id="ville">
                 <option value="votre-ville" selected>Ville d'origine</option>
                 <option value="bourg">Bour-en-Bresse (01)</option>
@@ -136,7 +126,7 @@
                 <option value="pontoise">Pontoise (95)</option>
   </select>
 
-            </p>
+            </p> -->
 
             <p><input type="password" name="password" id="password"  placeholder="Entrez votre Password" /></p>
 
@@ -145,11 +135,20 @@
             <input type="submit" value="Confirmez"/>
           </form>
         </div>
+
+        </article>
 </div>
 
 
-<?php require('bloc-chauffeur.php'); ?>
+<!-- <?php require('bloc-chauffeur.php'); ?>
 <?php require('bloc-client.php'); ?>
-<?php require('footer.php'); ?>
+<?php require('footer.php'); ?> -->
 </body>
-</html>           
+</html>
+
+<script type="text/javascript">
+function inscription() {
+  var div = document.getElementById('form-inscription');
+  div.style.display = div.style.display === 'none' ? '' : 'none';
+}
+</script>
