@@ -1,6 +1,7 @@
 $couleur : #030d0f;
 
 @import'contact';
+@import'connexion';
 
 html{
   width: 100%;
@@ -11,9 +12,7 @@ body{
   max-width: 970 px;
   width : 100%;
   margin : 0px;
-  background-image: url("../img/Pont-de-Normandie-03.jpg");
-  background-size: 200px 100px;
-  background-repeat: no-repeat;
+  background-image: url("../img/normandyBridge.jpg");
 }
 
 h1{
@@ -55,7 +54,6 @@ div.container{
     margin: auto;
     padding: 10px;
     width: 80%;
-
   }
 }
 

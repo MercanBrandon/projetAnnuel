@@ -4,18 +4,10 @@
 //     header('Location: http://127.0.0.1/edsa-TrandportMe/src/connect.php');
 //   }
 // }
- require('header.php');
+include_once('_header.php');
 $title = 'Simple Map';
-
  ?>
 
-<body id="index">
- <header class="main">
-   <img src="img/LogoWhite.png" alt="Logo">
-   <nav>
-     <!-- <h1>L'application socialement responsable</h1> -->
-   </nav>
- </header>
  <div id="map"></div>
  <script>
    var map;
