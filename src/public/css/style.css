@@ -230,4 +230,98 @@ html, body {
   margin: 0;
   padding: 0; }
 
+
+  /*INTERFACE*/
+
+  main{
+  width: : 100%;
+  height: 100%;
+
+}
+
+main .sideBar{
+  width: 15%;
+  height: 100%;
+  background-color: lightgrey;
+  top: 0;
+  padding-top: 100px;   
+}
+
+main .sideBar article {
+    border-bottom: 1px dashed white;
+}
+
+main .sideBar article h1 {
+    color: #787878;
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    line-height: 2em;
+    font-family: 'Bungee Shade', cursive;
+    font-size: 35px;
+}
+
+
+.menu {
+
+    color: #B3A394;
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+
+}
+
+.deroulant a{
+    color: black;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    
+
+}
+.deroulant  li{
+    height: 30px;
+}
+.deroulant  li:hover{
+    background-color: #F87060;
+
+}
+
+.deroulant  li:hover a{
+
+
+
+}
+
+
+
+ 
+.contenue{
+  width: 85%;
+    height: auto;
+    background-color: red;
+    /* position: fixed; */
+    right: 0px;
+    margin-left: 15%;
+}
+
+.bloc-depart {
+    width: 550px;
+    float: left;
+    height: 100%;
+    padding-top: 40px;
+    padding-left: 40px;
+}
+
+.bloc-depart input, .bloc-arrive input {
+  width: 400px;
+  height: 40px; 
+}
+
+.bloc-arrive {
+    width: 550px;
+    float: left;
+    height: 100%;
+    padding-top: 40px;
+}
+
 /*# sourceMappingURL=style.css.map */

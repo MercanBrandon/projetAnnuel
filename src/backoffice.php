@@ -8,107 +8,30 @@
 <title>TransportMe</title>
 </head>
 <body id="index"> 
-<?php require('header.php'); ?>
+<?php require('header-client.php'); ?>
 <main>
-            <section class="sideBar">
+    <section class="sideBar">
+        <article>
+        <h1>Bienvenue</h1>
+        </article>
 
-                <article>
-                    <h1>Request And Use!</h1>
-                </article>
+
+        <div>
+            <nav>
+                <ul class="deroulant">
+                    <li><a href="#">Mon compte</a></li>
+                    <li><a href="#">Mes courses</a></li>
+                    <li><a href="#">Mes moyens de paiments</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <section class="contenue">
 
 
-                    <div><a class="menu" href="#">Informatique</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div
-
-                    <div><a class="menu" href="#">Jeux Video</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div
-
-                    <div><a class="menu" href="#">Objet Connecté</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div
-
-                    <div><a class="menu" href="#">Maison Electroménager</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div
-
-                    <div><a class="menu" href="#">Bricolage</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div
-
-                    <div><a class="menu" href="#">Sport et Loisir</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div   
-
-                    <div><a class="menu" href="#">Music</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div   
-
-                    <div><a class="menu" href="#">Film</a>
-                        <nav>
-                            <ul class="deroulant">
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                                <li><a href="#">lien sous menu 1</a></li>
-                            </ul>
-                        </nav>
-                    </div   
-
-            </section>
-        </main>
-<?php require('bloc-chauffeur.php'); ?>
-<?php require('bloc-client.php'); ?>
+    </section>
+</main>
 <?php require('footer.php'); ?>
 </body>
 </html>  
