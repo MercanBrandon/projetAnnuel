@@ -4,7 +4,7 @@
 //     header('Location: http://127.0.0.1/edsa-TrandportMe/src/connect.php');
 //   }
 // }
- require('header.php');
+ require('_header.php');
 $title = 'Simple Map';
 
  ?>
