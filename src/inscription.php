@@ -2,7 +2,7 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-     <link rel="stylesheet" href="asset/css/style.css">
+     <link rel="stylesheet" href="public/css/style.css">
      <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Roboto+Condensed" rel="stylesheet">
     <title>Inscription -TransportMe</title>
   </head>

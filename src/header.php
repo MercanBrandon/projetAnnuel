@@ -1,5 +1,5 @@
 <header>
-	<img src="asset/img/LogoWhite.png" alt="Logo">
+	<img src="public/img/LogoWhite.png" alt="Logo">
 	<h1>L'application socialement responsable</h1>
 	<nav>
 		<ul>
