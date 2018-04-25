@@ -1,30 +1,19 @@
 <?php
-include_once 'bin/_config.php';
-include_once '_header.php';
+// if (!isset($_SESSION)) {
+//   if (empty($_SESSION)) {
+//     header('Location: http://127.0.0.1/edsa-TrandportMe/src/connect.php');
+//   }
+// }
+include_once('_header.php');
 $title = 'Simple Map';
-
  ?>
 
-<body id="index">
- <header class="main">
-   <img src="img/LogoWhite.png" alt="Logo">
-   <nav>
-     <!-- <h1>L'application socialement responsable</h1> -->
-     <form class="course" action="initcourse.php" method="post">
-       <input type="text" name="start"  value="" placeholder="Depart">
-       <input type="text" name="finish" value="" placeholder="Arrivée">
-       <input type="submit" name="" value="Gooo!!">
-     </form>
-   </nav>
- </header>
  <div id="map"></div>
  <script>
    var map;
    function initMap() {
      map = new google.maps.Map(document.getElementById('map'), {
-       // center: {lat: 15.2798157, lng: -61.3357894}, Guadeloupe
-       // center: {lat: 49.4431, lng: 1.0993}, Rouen
-       center: {lat: 48.8534, lng: 2.3488},
+       center: {lat: 15.2798157, lng: -61.3357894},
        zoom: 8,
        styles:[
            {

@@ -1,3 +1,4 @@
+<?php
 $dsn = 'mysql:dbname=dbtransportme;host=127.0.0.1';
 $user = 'root';
 $password = '';
@@ -13,3 +14,4 @@ try {
      header('Location: http://127.0.0.1/edsa-TrandportMe/src/connect.php');
    }
  }
+ ?>
