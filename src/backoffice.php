@@ -5,8 +5,6 @@
         <article>
         <h1>Bienvenue</h1>
         </article>
-
-
         <div>
             <nav>
                 <ul class="deroulant">

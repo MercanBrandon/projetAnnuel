@@ -36,7 +36,7 @@ CREATE TABLE Chauffeur(
 # Table: Personne
 #------------------------------------------------------------
 
-ALTER TABLE Personne(
+CREATE TABLE Personne(
         id_personne     int (11) Auto_increment  NOT NULL ,
         nom_personne    Char (25) ,
         prenom_personne Char (25) ,
@@ -102,7 +102,7 @@ CREATE TABLE attribuer(
 
 
 #------------------------------------------------------------
-# Table: être facturer
+# Table: ï¿½tre facturer
 #------------------------------------------------------------
 
 CREATE TABLE etre_facturer(

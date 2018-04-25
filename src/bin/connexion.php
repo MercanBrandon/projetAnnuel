@@ -1,15 +1,16 @@
 <?php session_start();
 include_once '_config.php';
+include_once 'class/user.php';
 
 $mail = $_POST['mail'];
 $password = $_POST['password'];
 
-$result = $dbh->exec("SELECT email_personne FROM personne WHERE email_personne = '$mail' AND password = '$password'");
-// $_SESSION('email') =
+$usr = new User($mail, $password);
 
-var_dump($result);
-var_dump($mail);
-var_dump($password);
+
+var_dump($usr->getName());
+// var_dump($mail);
+// var_dump($password);
 
 
  ?>
