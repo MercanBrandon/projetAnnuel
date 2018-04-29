@@ -2,7 +2,7 @@
 include_once('_header.php');
  if (!isset($_SESSION)) {
    if (empty($_SESSION)) {
-     header('Location: http://127.0.0.1/edsa-TrandportMe/src/connect.php');
+     header('Location: http://127.0.0.1/edsa-TME/connect.php');
    }
  }
 $title = 'Simple Map';
