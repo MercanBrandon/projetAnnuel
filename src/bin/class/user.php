@@ -16,11 +16,13 @@ class User
   protected $dsn = 'mysql:dbname=dbtransportme;host=127.0.0.1';
   protected $dbuser = 'root';
   protected $dbpassword = '';
-  protected $dbh;
+  public $dbh;
 
 
-  function __construct(PDO $dbh, $email, $sPassword)
+  function __construct($email, $sPassword)
   {
+    include_once '_config.php';
+    var_dump($dbh);
     $stmt = $dbh->prepare("SELECT id_personne, nom_personne, prenom_personne, date_naissance, tel_personne, email_personne  FROM personne WHERE email_personne = '$email' AND password = '$sPassword'");
     $stmt ->execute();
     $object = $stmt->fetchObject();
