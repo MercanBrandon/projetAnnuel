@@ -4,21 +4,12 @@ require_once 'user/User.php';
 require_once 'user/UserManager.php';
 //include_once 'class/driver.php';
 
-$laurence = new User([
-  'usr_name' => 'Louison',
-  'usr_firstname' => 'Laurence',
-  'usr_birthdate' => '1997-10-05',
-  'usr_phone' => '0690364616',
-  'usr_email' => 'laurence.louison@gmail.com',
-  'usr_password' => '123456'
 ]);
 
-var_dump($laurence);
 $db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');
 
 $manager = new UserManager($db);
 
-$manager->addUser($laurence);
 
 
 // $mail = $_POST['mail'];

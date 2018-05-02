@@ -4,19 +4,11 @@
  */
  class User
 {
-  private $usr_id;
-  private $usr_name;
-  private $usr_firstname;
-  private $usr_birthdate;
-  private $usr_phone;
-  private $usr_email;
-  private $usr_password;
 
   public function hydrate(array $donnees)
   {
     foreach ($donnees as $key => $value) {
       $method = 'set'.ucfirst($key);
-      if (method_exist($this, $method)) {
         $this->$method($value);
       }
     }
@@ -31,20 +23,9 @@
   public function getUsr_password(){return $this->usr_password;}
 
 
-  public function setUsr_id($id)
-  {
-    $this->usr_id = $id;
-  }
-
-  public function setUsr_name($name)
-  {
-    $this->usr_name = $name;
-  }
-
-  public function setUsr_firstname($firstname)
-  {
-    $this->usr_firstname = $firstname;
-  }
+  public function setUsr_id($id){$this->usr_id = $id;}
+  public function setUsr_name($name){$this->usr_name = $name;}
+  public function setUsr_firstname($firstname){$this->usr_firstname = $firstname;}
 
   public function setUsr_birthdate($birthdate)
   {
@@ -64,10 +45,7 @@
     $this->usr_email = $email;
   }
 
-  public function setUsr_password($password)
-  {
-    $this->usr_password = $newPassword;
-  }
+  public function setUsr_password($password){$this->usr_password = $newPassword;}
 }
 
  ?>
