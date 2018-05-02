@@ -4,11 +4,19 @@
  */
  class User
 {
+  protected $usr_id;
+  protected $usr_name;
+  protected $usr_firstname;
+  protected $usr_birthdate;
+  protected $usr_phone;
+  protected $usr_email;
+  protected $usr_password;
 
   public function hydrate(array $donnees)
   {
     foreach ($donnees as $key => $value) {
       $method = 'set'.ucfirst($key);
+      if (method_exists($this, $method)) {
         $this->$method($value);
       }
     }
