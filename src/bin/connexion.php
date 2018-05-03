@@ -1,27 +1,24 @@
-<?php //session_start();
+<?php session_start();
 //include_once '_config.php';
-require_once 'user/User.php';
+//require_once 'user/User.php';
 require_once 'user/UserManager.php';
 //include_once 'class/driver.php';
 
-$brandon = new User([
-  'usr_name' => 'Mercan',
-  'usr_firstname' => 'Brandon',
-  'usr_birthdate' => '1997-02-02',
-  'usr_phone' => '0768006602',
-  'usr_email' => 'mercan.brandon@outlook.fr',
-  'usr_password' => '22021997'
-]);
-
-var_dump($brandon);
 
 $db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');
 
 $manager = new UserManager($db);
 
-$ex = $manager->getUser('mercan.brandon@outlook.fr','22021997');
-// var_dump($ex);
+$user = $manager->getUser($_POST['mail'],$_POST['password']);
 
+//$_SESSION['user'] = $user;
+
+if ($user != NULL) {
+  $_SESSION['mail'] = $_POST['mail'];
+  $_SESSION['password'] = $_POST['password'];
+
+  header('Location: http://127.0.0.1:8080/edsa-TME/index.php');
+}
 
 // $mail = $_POST['mail'];
 // $password = $_POST['password'];
@@ -43,6 +40,5 @@ $ex = $manager->getUser('mercan.brandon@outlook.fr','22021997');
 //var_dump($usr->getName());
 //var_dump($driver);
 // var_dump($password);
-
 
  ?>

@@ -53,7 +53,7 @@
     $this->usr_email = $email;
   }
 
-  public function setUsr_password($password){$this->usr_password = $newPassword;}
+  public function setUsr_password($password){$this->usr_password = $password;}
 }
 
  ?>
