@@ -12,7 +12,7 @@ class dbh
     $password = '';
 
     $dbh = new PDO($dsn, $user, $password);
-    return $dbh ; 
+    return $dbh ;
   }
 }
 
