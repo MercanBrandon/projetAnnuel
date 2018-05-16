@@ -34,14 +34,16 @@ class UserManager
   $q = $this->_db->prepare("SELECT usr_id, usr_name, usr_firstname, usr_birthdate, usr_phone, usr_email FROM user where usr_email = '$email' AND usr_password = '$password'");
   $q->execute();
   $donnees = $q->fetch(PDO::FETCH_ASSOC);
-  $user = new User();
-  $user->hydrate($donnees);
+  $user = new User($donnees);
   return $user;
   }
 
   public function getUserList()
   {
-    // code...
+    $q = $this->_db->prepare("SELECT * FROM user");
+    $q->execute();
+    $userArray = $q->fetch(PDO::FETCH_ASSOC);
+    return $userArray;
   }
 
   public function updateUser(User $user)
