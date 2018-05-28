@@ -9,16 +9,22 @@ $db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');
 
 $manager = new UserManager($db);
 
-$user = $manager->getUser($_POST['mail'],$_POST['password']);
+if ($_POST['mail'] != NULL && $_POST['password'] != NULL) {
+  $user = $manager->getUser($_POST['mail'],$_POST['password']);
+}
+
 
 //$_SESSION['user'] = $user;
 
 if ($user != NULL) {
-  $_SESSION['mail'] = $_POST['mail'];
-  $_SESSION['password'] = $_POST['password'];
-
-  header('Location: http://127.0.0.1:8080/edsa-TME/index.php');
+  // $_SESSION['mail'] = $_POST['mail'];
+  // $_SESSION['password'] = $_POST['password'];
+  $_SESSION['user'] = serialize($user);
+  header('Location: http://127.0.0.1/edsa-TME/index.php');
+}else {
+  header('Location: http://127.0.0.1/edsa-TME/connect.php');
 }
+
 
 // $mail = $_POST['mail'];
 // $password = $_POST['password'];

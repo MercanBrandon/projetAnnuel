@@ -1,19 +1,18 @@
 <?php session_start();
+include_once('bin/user/User.php');
 include_once('_header.php');
- //if (isset($_SESSION['mail'])) {
-   if (empty($_SESSION['mail'])) {
-     if ($_SESSION['mail'] = undefined ) {
-       header('Location: http://127.0.0.1:8080/edsa-TME/connect.php');
-     }
+   $user = unserialize($_SESSION['user']);
+   if ($user == NULL) {
+     header('Location: http://127.0.0.1/edsa-TME/connect.php');
    }
- //}
 $title = 'Simple Map';
 
 //var_dump($_SESSION['user']);
  ?>
 <a href="deconnexion.php">Se deconnecter</a>
 
-<h1>Salut <?php printf($_SESSION['mail']); ?></h1>
+<h1>Salut <?php printf($user->getUsr_firstname().", où allons nous aujourd'hui?"); ?></h1>
+<a class="btn" href="profil.php">Mon Profil</a>
  <div id="map"></div>
  <script>
    var map;
