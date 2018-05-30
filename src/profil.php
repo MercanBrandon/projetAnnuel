@@ -11,7 +11,7 @@ $adrMgmt = new AdressManager($db);
 ?>
 
 <div class="container-fluid">
-  <div class="">
+  <div class="page-header">
     <?php
     printf('<p>'.$user->getUsr_name().'<br/>');
     printf($user->getUsr_firstname().'<br/>');
@@ -20,9 +20,9 @@ $adrMgmt = new AdressManager($db);
     printf($user->getUsr_phone().'<br/>');
     printf($user->getUsr_password().'</p>');
     ?>
-  </article>
+  </div>
   <article class="">
-    <table>
+    <table class="table table-dark">
       <thead><th>N° Course</th><th>Date Course</th>
       <?php
       $aCourse = $crsMgmt->listCourseByUserID($user->getUsr_id());
@@ -36,11 +36,15 @@ $adrMgmt = new AdressManager($db);
   <article class="">
     <?php
       $aAdress = $adrMgmt->adrLisByUsrID($user->getUsr_id());
-
+      printf('<ul class="list-group">');
       foreach ($aAdress as $key => $value) {
         $objAdress = new Adress($value);
-        $adrMgmt->showAdress($objAdress);
+          printf('<li class="list-group-item">');
+          $adrMgmt->showAdress($objAdress);
+          printf('</li>');
       }
+      printf('</ul>');
+
 
      ?>
   <a href="alterProfil.php">modifier mon profil</a>
