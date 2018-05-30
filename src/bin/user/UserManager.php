@@ -25,6 +25,19 @@ class UserManager
     $q->execute();
   }
 
+  public function createUser($usr_name, $usr_firstname, $usr_birthdate, $usr_phone, $usr_email, $usr_password){
+    $q = $this->_db->prepare('INSERT INTO user(usr_name, usr_firstname, usr_birthdate, usr_phone, usr_email, usr_password) VALUES (:name, :firstname, :birthdate, :phone, :email, :password)');
+
+    $q->bindvalue(':name', $usr_name);
+    $q->bindvalue(':firstname', $usr_firstname);
+    $q->bindvalue(':birthdate', $usr_birthdate);
+    $q->bindvalue(':phone', $usr_phone);
+    $q->bindvalue(':email', $usr_email);
+    $q->bindvalue(':password', $usr_password);
+
+    $q->execute();
+  }
+
   public function deleteUser(User $user){
     // TODO:
   }

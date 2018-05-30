@@ -11,6 +11,10 @@ $manager = new UserManager($db);
 
 if ($_POST['mail'] != NULL && $_POST['password'] != NULL) {
   $user = $manager->getUser($_POST['mail'],$_POST['password']);
+}elseif ($_POST['usr_email']!= NULL && $_POST['usr_email_confirm']!= NULL && $_POST['usr_name']!= NULL && $_POST['usr_firstname']!= NULL && $_POST['usr_password']!= NULL && $_POST['usr_password_confirm']!= NULL) {
+  if ($_POST['usr_email'] == $_POST['usr_email_confirm'] && $_POST['usr_password'] == $_POST['usr_password_confirm']) {
+    $manager->createUser($_POST['usr_name'],$_POST['usr_firstname'],$_POST['usr_birthdate'],$_POST['usr_phone'],$_POST['usr_email'],$_POST['usr_password']);
+  }
 }
 
 

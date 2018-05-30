@@ -42,7 +42,15 @@ class CourseManager
   {
     $q = $this->_db->prepare('SELECT * FROM course');
     $q->execute();
-    $courseArray = $q->fetch(PDO::FETCH_ASSOC);
+    $courseArray = $q->fetchAll();
+    return $courseArray;
+  }
+
+  public function listCourseByUserID($id)
+  {
+    $q = $this->_db->prepare("SELECT * FROM course WHERE usr_id = '$id'" );
+    $q->execute();
+    $courseArray = $q->fetchAll();
     return $courseArray;
   }
 
