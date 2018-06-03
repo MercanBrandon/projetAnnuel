@@ -6,9 +6,14 @@ class Course
 {
   private $id;
 
-  function __construct(argument)
+  function __construct(array $donnees)
   {
     
+  }
+
+  public function hydrate(array $donnees)
+  {
+
   }
 }
 
