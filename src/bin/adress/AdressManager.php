@@ -16,6 +16,24 @@ class AdressManager
     $this->_db = $db;
   }
 
+  public function getAdressByID($id)
+  {
+    $q = $this->_db->prepare("SELECT adr.adr_id, adr.adr_libelle, adr.adr_ligne1, adr.adr_ligne2, adr.adr_PC, adr.adr_city_lib FROM adress adr WHERE adr.adr_id = '$id'");
+    $q->execute();
+    $aAdress = $q->fetch(PDO::FETCH_ASSOC);
+    $oAdress = new Adress($aAdress);
+    return $oAdress;
+  }
+
+  public function showAdressByID($id)
+  {
+    $q = $this->_db->prepare("SELECT adr.adr_id, adr.adr_libelle, adr.adr_ligne1, adr.adr_ligne2, adr.adr_PC, adr.adr_city_lib FROM adress adr WHERE adr.adr_id = '$id'");
+    $q->execute();
+    $aAdress = $q->fetch(PDO::FETCH_ASSOC);
+    $oAdress = new Adress($aAdress);
+    $this->showAdress($oAdress);
+  }
+
   public function adrLisByUsrID($id)
   {
     $q = $this->_db->prepare("SELECT adr.adr_id, adr.adr_libelle, adr.adr_ligne1, adr.adr_ligne2, adr.adr_PC, adr.adr_city_lib FROM adress adr INNER JOIN usedby ON adr.adr_id = usedby.adr_id WHERE usedby.usr_id = '$id'");

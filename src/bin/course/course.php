@@ -40,4 +40,6 @@ class Course
   public function setEnd_adr_id($end_adr_id){$this->end_adr_id = $end_adr_id;}
 }
 
+
+
  ?>

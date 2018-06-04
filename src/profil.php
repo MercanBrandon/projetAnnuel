@@ -23,14 +23,16 @@ $adrMgmt = new AdressManager($db);
   </div>
   <article class="">
     <table class="table table-dark">
-      <thead><th>N° Course</th><th>Date Course</th>
+      <thead><th>N° Course</th><th>Date Course</th><th>Start Adress</th><th>End Adress</th>
       <?php
       $aCourse = $crsMgmt->listCourseByUserID($user->getUsr_id());
       foreach ($aCourse as $key => $value) {
         $objCourse = new Course($value);
-        printf('<tr><td>'.$objCourse->getCrs_id().'</td><td>'.$objCourse->getCrs_date().'</td></tr>');
+        printf('<tr><td><a href="course.php">'.$objCourse->getCrs_id().'</a></td><td>'.$objCourse->getCrs_date().'</td><td>'/*.$adrMgmt->showAdressByID($objCourse->getStart_adr_id())*/.'</td></tr>');
+        // printf($adrMgmt->showAdressByID($objCourse->getStart_adr_id()));
       }
       ?>
+
     </table>
   </article>
   <article class="">

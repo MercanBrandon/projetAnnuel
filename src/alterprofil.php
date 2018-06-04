@@ -23,6 +23,6 @@ $user = unserialize($_SESSION['user']);
     <p><input class="form-control" type="password" name="usr_password_confirm" id="password_confirm" placeholder="Confirmez votre Password"/></p>
 
     <input class="btn btn-success" type="submit" value="Confirmez"/>
-    <input class="btn btn-danger" type="submit" value="Annuler"/>
+    <a class="btn btn-danger" href="profil.php">Annuler</a>
   </form>
 </div>

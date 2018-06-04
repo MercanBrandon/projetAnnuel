@@ -1,5 +1,5 @@
 <?php
-require_once 'Course.php';
+require_once 'bin/course/Course.php';
 /**
  *
  */
@@ -37,6 +37,7 @@ class CourseManager
       return $course;
     }
   }
+
 
   public function listCourse()
   {
