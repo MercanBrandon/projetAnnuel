@@ -7,7 +7,9 @@ include_once('_header.php');
    }
 $title = 'Simple Map';
 
-//var_dump($_SESSION['user']);
+// var_dump($_SESSION);
+$user = $_SESSION['user'];
+var_dump($user);
  ?>
 <a href="deconnexion.php">Se deconnecter</a>
 
