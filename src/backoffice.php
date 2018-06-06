@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +9,20 @@
 <title>TransportMe</title>
 </head>
 <body id="index"> 
+=======
+<?php include_once '_header.php'; ?>
+>>>>>>> Connexion
 <?php require('header-client.php'); ?>
 <main>
     <section class="sideBar">
         <article>
         <h1>Bienvenue</h1>
         </article>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Connexion
         <div>
             <nav>
                 <ul class="deroulant">
@@ -34,4 +41,8 @@
 </main>
 <?php require('footer.php'); ?>
 </body>
+<<<<<<< HEAD
 </html>  
+=======
+</html>
+>>>>>>> Connexion
