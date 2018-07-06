@@ -57,8 +57,9 @@ class CourseManager
 
   public function update()
   {
-    // code...
+    // TODO:
   }
+  
   public function setDb(PDO $db)
   {
     $this->_db = $db;
