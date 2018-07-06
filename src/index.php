@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-<?php
+<?php session_start();
 // if (!isset($_SESSION)) {
 //   if (empty($_SESSION)) {
 //     header('Location: http://127.0.0.1/edsa-TrandportMe/src/connect.php');
 //   }
 // }
 include_once('_header.php');
-$title = 'Simple Map';
-=======
-<?php session_start();
+$title = 'Simple Map'; 
 include_once('_header.php');
 require_once 'bin/user/UserManager.php';
    $user = unserialize($_SESSION['user']);
@@ -20,7 +17,7 @@ $title = 'Simple Map';
 // var_dump($_SESSION);
 $user = $_SESSION['user'];
 var_dump($user);
- ?>
+?>
 
 <h1>Salut <?php printf($user->getUsr_firstname().", où allons nous aujourd'hui?"); ?></h1>
 <a class="btn" href="profil.php">Mon Profil</a>
