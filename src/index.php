@@ -9,8 +9,8 @@ include_once('_header.php');
 $title = 'Simple Map';
 =======
 <?php session_start();
-include_once('bin/user/User.php');
 include_once('_header.php');
+require_once 'bin/user/UserManager.php';
    $user = unserialize($_SESSION['user']);
    if ($user == NULL) {
      header('Location: http://127.0.0.1/edsa-TME/connect.php');
@@ -20,15 +20,10 @@ $title = 'Simple Map';
 // var_dump($_SESSION);
 $user = $_SESSION['user'];
 var_dump($user);
->>>>>>> Connexion
  ?>
-<a href="deconnexion.php">Se deconnecter</a>
 
-<<<<<<< HEAD
-=======
 <h1>Salut <?php printf($user->getUsr_firstname().", où allons nous aujourd'hui?"); ?></h1>
 <a class="btn" href="profil.php">Mon Profil</a>
->>>>>>> Connexion
  <div id="map"></div>
  <script>
    var map;

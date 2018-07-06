@@ -12,6 +12,7 @@ $adrMgmt = new AdressManager($db);
 
 <div class="container-fluid">
   <div class="page-header">
+    <a class="btn btn-dark" href="index.php">Home</a>
     <?php
     printf('<p>'.$user->getUsr_name().'<br/>');
     printf($user->getUsr_firstname().'<br/>');
