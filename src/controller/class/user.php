@@ -17,6 +17,7 @@ class User
   protected $dbuser = 'root';
   protected $dbpassword = '';
   protected $dbh;
+  protected $drv_id;
 
 
   function __construct(PDO $dbh, $email, $sPassword)
@@ -53,7 +54,18 @@ class User
     $this->dbh->query($sql);
   }
 
-  // function alter
+  // function update adresse 18/06/2018
+public function updateAdress($lib_adresse, $ligne1_adresse, $ligne2_adresse, $CP_adresse, $lib_ville){
+    $sql = UPDATE `adress` 
+    SET `lib_adresse`       = `$lib_adresse`,
+        `ligne1_adresse`    = `$ligne1_adresse`,
+        `ligne2_adresse`    = `$ligne2_adresse`,
+        `CP_adresse`        = `$CP_adresse`,
+        `lib_ville`         = `$lib_ville`
+    WHERE `adress`.`id_personne` = '$this->id_usr';
+    $this->dbh->query($sql);
+}
+
 }
 
  ?>

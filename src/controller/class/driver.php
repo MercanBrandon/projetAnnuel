@@ -21,9 +21,10 @@ class Driver extends User
   }
 
   public function selectCourses(){
-    // TODO: recuperer la liste de course attribuer au chauffeur en cours
-  }
+    // TODO: recuperer la liste de course attribuer au chauffeur en cours 18/06/2018
 
+    $sql =  SELECT * FROM `driver`  where id = id and date = la date definie
+  }
 
 
 
