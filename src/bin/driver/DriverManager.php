@@ -16,6 +16,10 @@ require_once 'UserManager.php';
       $q= $this->_db->prepare("INSERT INTO assign(assign_start_date, id_vehicule, drv_id) VALUES (date(now()),'$car_id','$this->usr_id')");
       $q->execute();
     }
+
+  public function selectCourses(){
+    // TODO: recuperer la liste de course attribuer au chauffeur en cours
+  }
   }
 
  ?>
