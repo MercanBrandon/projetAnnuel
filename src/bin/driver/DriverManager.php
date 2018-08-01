@@ -17,6 +17,7 @@ require_once 'UserManager.php';
       $q->execute();
     }
 
+    
   public function selectCourses(){
     // TODO: recuperer la liste de course attribuer au chauffeur en cours
   }
