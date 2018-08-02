@@ -1,20 +1,3 @@
-<?php session_start();
-include_once('_header.php');
-require_once 'bin/user/UserManager.php';
-   $user = unserialize($_SESSION['user']);
-   if ($user == NULL) {
-     header('Location: http://127.0.0.1/edsa-TME/connect.php');
-   }
-$title = 'Simple Map';
-
-// var_dump($_SESSION);
-// $user = $_SESSION['user'];
-// var_dump($user);
- ?>
-
-
-<h1>Salut <?php printf($user->getUsr_firstname().", où allons nous aujourd'hui?"); ?></h1>
-<a class="btn btn-dark" href="profil.php">Mon Profil</a><a class="btn btn-secondary"href="deconnexion.php">Se deconnecter</a>
 <a class="btn btn-dark" href="carte.php">Carte</a>
 <input type="text" id="pac-input" name="pac-input" value="">
  <div id="map"></div>

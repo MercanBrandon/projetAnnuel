@@ -69,6 +69,17 @@ class UserManager
     // code...
   }
 
+  public function driverTest($usr_id){
+    $q = $this->_db->prepare("SELECT * FROM driver d WHERE d.usr_id = '$usr_id'");
+    $q->execute();
+    $driverArray = $q->fetch(PDO::FETCH_ASSOC);
+    if(empty($driverArray)){
+      return NULL;
+    }else {
+      return TRUE;
+    }
+  }
+
   public function setDb(PDO $db)
   {
     $this->_db = $db;

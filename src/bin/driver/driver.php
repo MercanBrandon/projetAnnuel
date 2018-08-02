@@ -1,26 +1,26 @@
 <?php
-require_once 'User.php';
 /**
  *
  */
 class Driver extends User
 {
-  private $drv_id;
-  private $drv_hiring_date;
-  private $drv_licence_date;
-  private $usr_id;
-
+  protected $drv_id;
+  protected $drv_hiring_date;
+  protected $drv_licence_date;
+  protected $usr_id;
 
   function __construct(array $donnees)
   {
-    $this->hydrate($donnees);
     parent::__construct($donnees);
-    foreach ($donnees as $key => $value) {
-      $method = 'set'.ucfirst($key);
-      if (method_exists($this, $method)) {
-        $this->$method($value);
-      }
+    //$this->hydrate($donnees);
+    // foreach ($donnees as $key => $value) {
+    //   $method = 'set'.ucfirst($key);
+    //   if (method_exists($this, $method)) {
+    //     $this->$method($value);
+    //   }
+    // }
   }
+
 
   function getDrv_id(){return $this->drv_id;}
   function getDrv_hiring_date(){return $this->drv_hiring_date;}
@@ -33,7 +33,7 @@ class Driver extends User
   function setUsr_id($Usr_id){$this->Usr_id = $Usr_id;}
 
 
-  public function getHiringDate(){
+  function getHiringDate(){
     // TODO: si la date d'embauche n'est pas définie, la définir, sinon, modifier
   }
 }
