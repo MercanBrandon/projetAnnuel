@@ -17,7 +17,7 @@ require_once ('driver.php');
       $q->execute();
       $aData = $q->fetch(PDO::FETCH_ASSOC);
       if (empty($aData)) {
-        return NULL; 
+        return NULL;
       }else {
         $driver = new Driver($aData);
         return $driver;
@@ -30,14 +30,28 @@ require_once ('driver.php');
       $q->execute();
     }
 
-    
-    public function selectCoursesByDriver($Driver_id){
-      $q = $this->_db->prepare("SELECT * FROM course c WHERE c.drv_id = '1'");
+    public function getCourses($Driver_id){
+      $q = $this->_db->prepare("SELECT c.crs_id, c.crs_date, u.usr_name, u.usr_firstname, adr1.adr_city_lib depart, adr2.adr_city_lib arrivee FROM course c INNER JOIN driver d ON c.drv_id = d.drv_id INNER JOIN user u ON c.usr_id = u.usr_id LEFT JOIN adress adr1 on c.start_adr_id = adr1.adr_id LEFT JOIN adress adr2 ON c.end_adr_id = adr2.adr_id WHERE c.drv_id = '$Driver_id'");
       $q->execute();
       $courseArray = $q->fetchAll(PDO::FETCH_ASSOC);
       return $courseArray;
     }
 
+    public function getVehicules($Driver_id)
+    {
+      $q = $this->_db->prepare("SELECT v.id_vehicule, v.immatriculation, v.marque, v.modele, a.assign_start_date, a.assign_end_date FROM assign a INNER JOIN vehicule v ON a.id_vehicule = v.id_vehicule JOIN driver d on a.drv_id = d.drv_id WHERE d.drv_id = '$Driver_id' ");
+      $q->execute();
+      $aVehicule = $q->fetchAll(PDO::FETCH_ASSOC);
+      return $aVehicule;
+    }
+
+    public function getClients($Driver_id)
+    {
+      $q = $this->_db->prepare("SELECT u.usr_name, u.usr_firstname, c.crs_date FROM user u INNER JOIN course c ON u.usr_id = c.usr_id WHERE c.drv_id = '$Driver_id' ORDER BY c.crs_date ");
+      $q->execute();
+      $aCourses = $q->fetchAll(PDO::FETCH_ASSOC);
+      return $aCourses;
+    }
   }
 
  ?>
