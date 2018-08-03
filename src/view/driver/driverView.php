@@ -100,6 +100,9 @@
                     echo 'Date d\'embauche : '.$driver->getDrv_hiring_date().'<br>';
                     echo 'Date permis : '.$driver->getDrv_licence_date().'<br>';
                     echo 'ID Chauffeur : '.$driver->getDrv_id().'<br>';
+
+                    // echo $driver->getDrv_id();
+                    var_dump($driver->getDrv_id());
                 ?>
             </div>
         </div>
