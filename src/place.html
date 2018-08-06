@@ -89,7 +89,7 @@
     <div class="pac-card" id="pac-card">
       <div>
         <div id="title">
-          Tell me where we going ... 
+          Tell me where we going ...
         </div>
         <div id="type-selector" class="pac-controls">
           <!--<input type="radio" name="type" id="changetype-all" checked="checked">
@@ -113,6 +113,7 @@
         <input id="pac-input" type="text"
             placeholder="depart">
         <input id="pac-input2" type="text" placeholder="arrive">
+        <input type="submit" id="GoTo" value="Go!!">
       </div>
 
     </div>
@@ -334,6 +335,7 @@
             return;
           }
 
+
           // If the place has a geometry, then present it on a map.
           if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
@@ -343,6 +345,16 @@
           }
           marker.setPosition(place.geometry.location);
           marker.setVisible(true);
+
+          var lat = place.geometry.location.lat();
+          var lng = place.geometry.location.lng();
+
+          document.getElementById("GoTo").onclick = function(){
+            location.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+          }
+          console.log(place.geometry.location);
+
+          console.log(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`);
 
           var address = '';
           if (place.address_components) {

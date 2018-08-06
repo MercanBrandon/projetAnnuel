@@ -4,10 +4,11 @@ require_once 'bin/user/UserManager.php';
 require_once 'bin/driver/DriverManager.php';
    $user = unserialize($_SESSION['user']);
    if ($user == NULL) {
-     header('Location: http://127.0.0.1/edsa-TME/connect.php');
+     //header('Location: http://127.0.0.1/edsa-TME/connect.php');
+     header('Location: http://test.mercan-brandon.fr/TransportMe/connect.php');
    }
 $title = 'Simple Map';
-$db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');
+//$db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');
 $userManager = new UserManager($db);
 $driverManager = new DriverManager($db);
 $driver = $driverManager->getDriver($user->getUsr_id());
