@@ -2,12 +2,15 @@
 //include_once '_config.php';
 //require_once 'user/User.php';
 require_once 'user/UserManager.php';
+require_once 'driver/DriverManager.php';
 //include_once 'class/driver.php';
 
 
 $db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');
+//$db = new PDO('mysql:dbname=db643371261;host=db643371261.db.1and1.com','dbo643371261','TME2018');
 
 $manager = new UserManager($db);
+$driverManager = new DriverManager($db);
 
 if ($_POST['mail'] != NULL && $_POST['password'] != NULL) {
   $user = $manager->getUser($_POST['mail'],$_POST['password']);

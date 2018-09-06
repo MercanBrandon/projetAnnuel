@@ -52,4 +52,6 @@ $adrMgmt = new AdressManager($db);
      ?>
   <a href="alterProfil.php">modifier mon profil</a>
   </article>
+
+  <script src="_map.js"></script>
 </div>
