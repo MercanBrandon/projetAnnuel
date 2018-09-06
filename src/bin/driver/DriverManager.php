@@ -13,7 +13,7 @@ require_once ('driver.php');
 
     public function getDriver($Usr_id)
     {
-      $q = $this->_db->prepare("SELECT u.usr_id, u.usr_name, u.usr_firstname, u.usr_firstname, u.usr_birthdate, u.usr_phone, u.usr_email, d.drv_id, d.drv_hiring_date, d.drv_licence_date FROM driver d INNER JOIN user u ON d.usr_id = u.usr_id WHERE d.usr_id = '$Usr_id'");
+      $q = $this->_db->prepare("SELECT u.*, d.* FROM driver d INNER JOIN user u on d.usr_id = u.usr_id WHERE d.usr_id = '$Usr_id'");
       $q->execute();
       $aData = $q->fetch(PDO::FETCH_ASSOC);
       if (empty($aData)) {
