@@ -23,6 +23,37 @@ require_once ('driver.php');
         return $driver;
       }
     }
+    /*
+
+
+    */
+    public function getDriverPoint($geolocPoint)
+    {
+
+      $geocor = json_decode($geolocPoint);
+      $x = $geocor->coordinates[0];
+      $y = $geocor->coordinates[1];
+
+      $nbKM = 30;
+
+      $const = 0.0089936 * $nbKM;
+
+      $xmin = $x-$const;
+      $xmax = $x+$const;
+      $ymin = $y-$const;
+      $ymax = $y+$const;
+
+
+      $q = $this->_db->prepare("SELECT * FROM driver WHERE ST_CONTAINS(ST_GEOMFROMTEXT('POLYGON((".$xmin." ".$y.",".$x." ".$ymax.",".$xmax." ".$y.",".$x." ".$ymin.",".$xmin." ".$y."))',4326),ST_GeomFromGeoJSON(drv_position))=1");
+      $q->execute();
+      $aData = $q->fetchAll(PDO::FETCH_ASSOC);
+      if (empty($aData)) {
+        return NULL;
+      }else {
+       
+        return $aData;
+      }
+    }
 
     public function atributeCar($car_id){
       // TODO: attribue une voiture au chauffeur courant

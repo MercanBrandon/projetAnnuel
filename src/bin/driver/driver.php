@@ -2,13 +2,19 @@
 /**
  *
  */
+require_once __DIR__.'/../user/UserManager.php';
+require_once __DIR__.'/../../api/connect.php';
+
 class Driver extends User
 {
   protected $drv_id;
   protected $drv_hiring_date;
   protected $drv_licence_date;
   // protected $usr_id;
-
+function __construct($array)
+{
+  User::__construct($array);
+}
   function getDrv_id(){return $this->drv_id;}
   function getDrv_hiring_date(){return $this->drv_hiring_date;}
   function getDrv_licence_date(){return $this->drv_licence_date;}
