@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 30 avr. 2018 à 17:00
+-- Généré le :  jeu. 26 juil. 2018 à 09:20
 -- Version du serveur :  5.7.17
--- Version de PHP :  7.1.3
+-- Version de PHP :  5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,7 +32,7 @@ CREATE TABLE `adress` (
   `adr_id` int(11) NOT NULL,
   `adr_libelle` char(50) DEFAULT NULL,
   `adr_ligne1` char(25) DEFAULT NULL,
-  `asr_ligne2` char(25) DEFAULT NULL,
+  `adr_ligne2` char(25) DEFAULT NULL,
   `adr_PC` int(11) DEFAULT NULL,
   `adr_city_lib` char(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,7 +41,7 @@ CREATE TABLE `adress` (
 -- Déchargement des données de la table `adress`
 --
 
-INSERT INTO `adress` (`adr_id`, `adr_libelle`, `adr_ligne1`, `asr_ligne2`, `adr_PC`, `adr_city_lib`) VALUES
+INSERT INTO `adress` (`adr_id`, `adr_libelle`, `adr_ligne1`, `adr_ligne2`, `adr_PC`, `adr_city_lib`) VALUES
 (1, 'Rouen', '63 rue moise', NULL, 76000, 'ROUEN'),
 (2, 'Petit-canal', 'Maisoncelle', NULL, 97131, 'PETIT-CANAL');
 
@@ -55,9 +55,15 @@ CREATE TABLE `assign` (
   `assign_start_date` date DEFAULT NULL,
   `assign_end_date` date DEFAULT NULL,
   `id_vehicule` int(11) NOT NULL,
-  `drv_id` int(11) NOT NULL,
-  `usr_id` int(11) NOT NULL
+  `drv_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `assign`
+--
+
+INSERT INTO `assign` (`assign_start_date`, `assign_end_date`, `id_vehicule`, `drv_id`) VALUES
+('2018-07-13', NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -66,14 +72,21 @@ CREATE TABLE `assign` (
 --
 
 CREATE TABLE `course` (
-  `idCourse` int(11) NOT NULL,
-  `dateCourse` date DEFAULT NULL,
+  `crs_id` int(11) NOT NULL,
+  `crs_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `drv_id` int(11) DEFAULT NULL,
   `usr_id` int(11) NOT NULL,
-  `usr_id_User` int(11) NOT NULL,
-  `adr_id` int(11) NOT NULL,
-  `adr_id_Adress` int(11) NOT NULL
+  `start_adr_id` int(11) NOT NULL,
+  `end_adr_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `course`
+--
+
+INSERT INTO `course` (`crs_id`, `crs_date`, `drv_id`, `usr_id`, `start_adr_id`, `end_adr_id`) VALUES
+(1, '2018-05-28 22:00:00', 1, 1, 2, 1),
+(3, '2018-05-29 13:50:35', 1, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -87,6 +100,13 @@ CREATE TABLE `driver` (
   `drv_licence_date` date DEFAULT NULL,
   `usr_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `driver`
+--
+
+INSERT INTO `driver` (`drv_id`, `drv_hiring_date`, `drv_licence_date`, `usr_id`) VALUES
+(1, '2018-05-29', '2015-10-01', 3);
 
 -- --------------------------------------------------------
 
@@ -131,7 +151,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`usr_id`, `usr_name`, `usr_firstname`, `usr_birthdate`, `usr_phone`, `usr_email`, `usr_password`) VALUES
 (1, 'Mercan', 'Brandon', '1997-02-22', '0768006602', 'mercan.brandon@outlook.fr', '22021997'),
 (2, 'Louison', 'Laurence', '1997-10-05', '0690193646', 'missmwa971@gmail.com', '123456'),
-(33, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 'Thomas', 'Mercan', '1997-02-22', '0690193646', 'thebrandon971@gmail.com', '123456'),
+(4, 'Cabrisseau', 'Sonny', '1995-02-14', '0663950466', 'sonny.cabrisseau@gmail.com', 'P@ssw0rd'),
+(5, 'LOHEZIC', 'Oriane', '1995-05-10', '0678734833', 'oriane.lohezic@gmail.com', 'ol100595');
 
 -- --------------------------------------------------------
 
@@ -147,6 +169,14 @@ CREATE TABLE `vehicule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Déchargement des données de la table `vehicule`
+--
+
+INSERT INTO `vehicule` (`id_vehicule`, `immatriculation`, `marque`, `modele`) VALUES
+(1, 'AE-221-ZP', 'OPEL', 'Astra G'),
+(2, 'CF-815-YS', 'Peugeot', '207');
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -160,20 +190,18 @@ ALTER TABLE `adress`
 -- Index pour la table `assign`
 --
 ALTER TABLE `assign`
-  ADD PRIMARY KEY (`id_vehicule`,`drv_id`,`usr_id`),
-  ADD KEY `FK_assign_drv_id` (`drv_id`),
-  ADD KEY `FK_assign_usr_id` (`usr_id`);
+  ADD PRIMARY KEY (`id_vehicule`,`drv_id`),
+  ADD KEY `FK_assign_drv_id` (`drv_id`);
 
 --
 -- Index pour la table `course`
 --
 ALTER TABLE `course`
-  ADD PRIMARY KEY (`idCourse`),
+  ADD PRIMARY KEY (`crs_id`),
   ADD KEY `FK_Course_drv_id` (`drv_id`),
   ADD KEY `FK_Course_usr_id` (`usr_id`),
-  ADD KEY `FK_Course_usr_id_User` (`usr_id_User`),
-  ADD KEY `FK_Course_adr_id` (`adr_id`),
-  ADD KEY `FK_Course_adr_id_Adress` (`adr_id_Adress`);
+  ADD KEY `FK_Course_adr_id` (`start_adr_id`),
+  ADD KEY `FK_Course_adr_id_Adress` (`end_adr_id`);
 
 --
 -- Index pour la table `driver`
@@ -215,22 +243,22 @@ ALTER TABLE `adress`
 -- AUTO_INCREMENT pour la table `course`
 --
 ALTER TABLE `course`
-  MODIFY `idCourse` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `crs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `drv_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `drv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `usr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `usr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `vehicule`
 --
 ALTER TABLE `vehicule`
-  MODIFY `id_vehicule` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_vehicule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables déchargées
 --
@@ -240,18 +268,16 @@ ALTER TABLE `vehicule`
 --
 ALTER TABLE `assign`
   ADD CONSTRAINT `FK_assign_drv_id` FOREIGN KEY (`drv_id`) REFERENCES `driver` (`drv_id`),
-  ADD CONSTRAINT `FK_assign_id_vehicule` FOREIGN KEY (`id_vehicule`) REFERENCES `vehicule` (`id_vehicule`),
-  ADD CONSTRAINT `FK_assign_usr_id` FOREIGN KEY (`usr_id`) REFERENCES `user` (`usr_id`);
+  ADD CONSTRAINT `FK_assign_id_vehicule` FOREIGN KEY (`id_vehicule`) REFERENCES `vehicule` (`id_vehicule`);
 
 --
 -- Contraintes pour la table `course`
 --
 ALTER TABLE `course`
-  ADD CONSTRAINT `FK_Course_adr_id` FOREIGN KEY (`adr_id`) REFERENCES `adress` (`adr_id`),
-  ADD CONSTRAINT `FK_Course_adr_id_Adress` FOREIGN KEY (`adr_id_Adress`) REFERENCES `adress` (`adr_id`),
+  ADD CONSTRAINT `FK_Course_adr_id` FOREIGN KEY (`start_adr_id`) REFERENCES `adress` (`adr_id`),
+  ADD CONSTRAINT `FK_Course_adr_id_Adress` FOREIGN KEY (`end_adr_id`) REFERENCES `adress` (`adr_id`),
   ADD CONSTRAINT `FK_Course_drv_id` FOREIGN KEY (`drv_id`) REFERENCES `driver` (`drv_id`),
-  ADD CONSTRAINT `FK_Course_usr_id` FOREIGN KEY (`usr_id`) REFERENCES `user` (`usr_id`),
-  ADD CONSTRAINT `FK_Course_usr_id_User` FOREIGN KEY (`usr_id_User`) REFERENCES `user` (`usr_id`);
+  ADD CONSTRAINT `FK_Course_usr_id` FOREIGN KEY (`usr_id`) REFERENCES `user` (`usr_id`);
 
 --
 -- Contraintes pour la table `driver`
