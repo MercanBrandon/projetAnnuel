@@ -2,8 +2,8 @@
 <input type="text" id="pac-input" name="pac-input" value="">
  <div id="map"></div>
  <div class="map_from" id="map_from">
-   <input type="text" name="start_position" value="" placeholder="Départ">
-   <input type="text" name="destination_position" value="" placeholder="Arrivee">
+   <input type="text" id="start_position" value="" placeholder="Départ" style="width:80%;">
+   <input type="text" id="destination_position" value="" placeholder="Arrivee" style="width:80%;">
    <input type="submit" name="btn_go" value="An nou !!!">
  </div>
 <script>
@@ -176,26 +176,45 @@
      });
      var infoWindow = new google.maps.InfoWindow({map: map});
 
-     var txt_start = document.getElementsByName('start_position');
-     var txt_destination = document.getElementsByName('destination_position');
+     // Try HTML5 geolocation.
+     if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(function(position) {
+         var pos = {
+           lat: position.coords.latitude,
+           lng: position.coords.longitude
+         };
+
+         infoWindow.setPosition(pos);
+         infoWindow.setContent('Location found.');
+         map.setCenter(pos);
+       }, function() {
+         handleLocationError(true, infoWindow, map.getCenter());
+       });
+     } else {
+       // Browser doesn't support Geolocation
+       handleLocationError(false, infoWindow, map.getCenter());
+     }
+
+     var txt_start = document.getElementById('start_position');
+     var txt_destination = document.getElementById('destination_position');
      map.controls[google.maps.ControlPosition.TOP].push(map_from);
 
      var auto_txt_start = new google.maps.places.Autocomplete(txt_start);
      var auto_txt_destination = new google.maps.places.Autocomplete(txt_destination);
 
-     auto_txt_start.bindTo('bounds', map);
+     //auto_txt_start.bindTo('bounds', map);
 
-     auto_txt_start.addListener('place_changed', function() {
+     auto_txt_destination.addListener('place_changed', function() {
        infowindow.close();
        marker.setVisible(false);
-       var place = autocomplete.getPlace();
+       var place = auto_txt_destination.getPlace();
+       console.log(place);
        if (!place.geometry) {
          // User entered the name of a Place that was not suggested and
          // pressed the Enter key, or the Place Details request failed.
          window.alert("No details available for input: '" + place.name + "'");
          return;
        }
-
 
        // If the place has a geometry, then present it on a map.
        if (place.geometry.viewport) {
@@ -232,24 +251,7 @@
        infowindow.open(map, marker);
      });
 
-     // Try HTML5 geolocation.
-     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(function(position) {
-         var pos = {
-           lat: position.coords.latitude,
-           lng: position.coords.longitude
-         };
 
-         infoWindow.setPosition(pos);
-         infoWindow.setContent('Location found.');
-         map.setCenter(pos);
-       }, function() {
-         handleLocationError(true, infoWindow, map.getCenter());
-       });
-     } else {
-       // Browser doesn't support Geolocation
-       handleLocationError(false, infoWindow, map.getCenter());
-     }
    }
 
    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
