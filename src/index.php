@@ -5,13 +5,13 @@
 //   }
 // }
 include_once('_header.php');
-$title = 'Simple Map'; 
+$title = 'Simple Map';
 include_once('_header.php');
 require_once 'bin/user/UserManager.php';
 require_once 'bin/driver/DriverManager.php';
    $user = unserialize($_SESSION['user']);
    if ($user == NULL) {
-     header('Location: http://127.0.0.1/edsa-TME/connect.php');
+     header('Location: /edsa-TME/connect.php');
      //header('Location: http://test.mercan-brandon.fr/TransportMe/connect.php');
    }
 $title = 'Simple Map';

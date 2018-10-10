@@ -27,9 +27,9 @@ if ($user != NULL) {
   // $_SESSION['mail'] = $_POST['mail'];
   // $_SESSION['password'] = $_POST['password'];
   $_SESSION['user'] = serialize($user);
-  header('Location: http://127.0.0.1/edsa-TME/index.php');
+  header('Location: /edsa-TME/index.php');
 }else {
-  header('Location: http://127.0.0.1/edsa-TME/connect.php');
+  header('Location: /edsa-TME/connect.php');
 }
 
 
