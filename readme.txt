@@ -19,3 +19,5 @@ L'application sert à faire tchater deux personnes ou plus en même temps selon 
 Le coït étant effectué, chaque personne pourra revenir à sa vie normale en étant satisfait d'avoir pu assouvir ses pulsions les plus basiques et primaires, et pourquoi pas réutiliser l'application dans des fins de reproductions plus poussées. Le produit permettant d'être anonyme, l'utilisation s'en voit pratique et allégée, et pratique.
 
 Texte de B. Bakar, (C) 2018, Tous droits réservés.
+
+https://developers.google.com/maps/documentation/javascript/controls
