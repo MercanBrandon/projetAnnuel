@@ -1,13 +1,18 @@
 <a class="btn btn-dark" href="carte.php">Carte</a>
 <input type="text" id="pac-input" name="pac-input" value="">
  <div id="map"></div>
- <div class="map_form" id="map_form">
+ <div class="map_from" id="map_from">
    <input type="text" id="start_position" value="" placeholder="Départ" style="width:80%;">
    <input type="text" id="destination_position" value="" placeholder="Arrivee" style="width:80%;">
-   <input type="submit" id="btn_go" value="An nou !!!">
+   <input type="submit" name="btn_go" value="An nou !!!">
  </div>
 <script>
    var map;
+   var start_position;
+   var destination;
+   var txt_start = document.getElementById('start_position');
+   var txt_destination = document.getElementById('destination_position');
+
    function initMap() {
      map = new google.maps.Map(document.getElementById('map'), {
        center: {lat: 15.2798157, lng: -61.3357894},
@@ -175,141 +180,29 @@
        ]
      });
 
-     // Try HTML5 geolocation.
-     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(function(position) {
-         var start_position = {
-           lat: position.coords.latitude,
-           lng: position.coords.longitude
-         };
+     //Geolocation
+     if (navigator.geolocation.getCurrentPosition(function(position){
+       pos = {
+         lat: position.coords.latitude,
+         lng: position.coords.longitude
+       };
 
-         infoWindow.setPosition(start_position);
-         infoWindow.setContent('Mi vou ... ');
-         map.setCenter(start_position);
-         txt_start.placeholder = 'Position Actuelle';
-         console.log(txt_start);
-       }, function() {
-         handleLocationError(true, infoWindow, map.getCenter());
-       });
-     } else {
-       // Browser doesn't support Geolocation
-       handleLocationError(false, infoWindow, map.getCenter());
-     }
-
-     //recuperation et
-     map.controls[google.maps.ControlPosition.TOP].push(map_form);
-     var txt_start = document.getElementById('start_position');
-     var start_position;
-
-     var txt_destination = document.getElementById('destination_position');
-     var end_position;
-
-     var infoWindow = new google.maps.InfoWindow({map: map});
-     var marker_origin = new google.maps.Marker({
-       map:map,
-       animation: google.maps.Animation.DROP
-     })
-     var marker_end = new google.maps.Marker({
-       map:map,
-       animation: google.maps.Animation.DROP
+       infowindow.setPosition(pos);
+       infowindow.setContent('Mi Sé La Ou Yé');
+       txt_start.placeholder = 'Position Actuelle';
+     }, function(){
+       handleLocationError(true, infowindow, map.getCenter());
      });
+   }else {
+     handleLocationError(false, infowindow, map.getcenter());
+   })
 
-     var auto_txt_start = new google.maps.places.Autocomplete(txt_start);
-     var auto_txt_destination = new google.maps.places.Autocomplete(txt_destination);
-     console.log(auto_txt_destination);
-
-     let origin;
-     auto_txt_start.addListener('place_changed', function () {
-       origin = auto_txt_start.getPlace();
-       if (!origin.geometry) {
-         window.alert("Nou pa kònèt "+origin.name);
-         return;
-       }
-       if (origin.geometry.viewport) {
-         map.fitBounds(origin.geometry.viewport);
-       }else {
-         map.setCenter(origin.geometry.viewport);
-         map.setZoom(15);
-       }
-       marker_origin.setPosition(origin.geometry.location);
-       console.log(origin);
-     })
-
-     let destination;
-     auto_txt_destination.addListener('place_changed', function() {
-       //infowindow.close();
-       //marker.setVisible(false);
-       destination = auto_txt_destination.getPlace();
-
-       if (!destination.geometry) {
-         // User entered the name of a Place that was not suggested and
-         // pressed the Enter key, or the Place Details request failed.
-         window.alert("No details available for input: '" + destination.name + "'");
-         return;
-       }
-
-       // If the place has a geometry, then present it on a map.
-       if (destination.geometry.viewport) {
-         map.fitBounds(destination.geometry.viewport);
-       } else {
-         map.setCenter(destination.geometry.location);
-         map.setZoom(15);
-       }
-       marker_end.setPosition(destination.geometry.location);
-       marker_end.setVisible(true);
-
-       /*var lat = destination.geometry.location.lat();
-       var lng = destination.geometry.location.lng();*/
-
-
-       //console.log(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`);
-
-       /*var address = '';
-       if (place.address_components) {
-         address = [
-           (place.address_components[0] && place.address_components[0].short_name || ''),
-           (place.address_components[1] && place.address_components[1].short_name || ''),
-           (place.address_components[2] && place.address_components[2].short_name || '')
-         ].join(' ');
-       }
-
-       infowindowContent.children['place-icon'].src = place.icon;
-       infowindowContent.children['place-name'].textContent = place.name;
-       infowindowContent.children['place-address'].textContent = address;
-       infowindow.open(map, marker);*/
-     });
-
-     document.getElementById("btn_go").onclick = function(){
-       //location.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
-       let directionsDisplay = '';
-         console.log(destination);
-         console.log(origin);
-         directionsDisplay = new google.maps.DirectionsRenderer({
-            map: map
-          });
-         var request = {
-          destination: destination.geometry.location,
-          origin: origin.geometry.location,
-          travelMode: 'DRIVING'
-        };
-        var directionsService = new google.maps.DirectionsService();
-        directionsService.route(request, function(response, status) {
-          if (status == 'OK') {
-            // Display the route on the map.
-            directionsDisplay.setDirections(response);
-          }
-        });
-       
-     }
+   var marker_end = new google.maps.Marker({
+     map:map,
+     animation: google.maps.Animation.DROP,
+     position: pos
+   });
    }
-
-   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-     infoWindow.setPosition(pos);
-     infoWindow.setContent(browserHasGeolocation ?
-                           'Error: The Geolocation service failed.' :
-                           'Error: Your browser doesn\'t support geolocation.');
-   }
-
  </script>
  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&libraries=places&callback=initMap"></script>
 </body>
