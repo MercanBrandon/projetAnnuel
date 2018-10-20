@@ -44,7 +44,7 @@ class TempManager
         $q->bindvalue('tmp_course', $tmp_course);
 
         $q->execute();
-
+        $id = $this->_db->lastInsertId();
         foreach ($drivers as $driver)
         {
             $q=null;
@@ -56,7 +56,9 @@ class TempManager
             $q->bindvalue('status', false);
 
             $q->execute();
+
         }
+        return $id;
     }
 
     public function getDriverCourseIfExist($driver_id)
@@ -97,6 +99,32 @@ class TempManager
         $q2->bindvalue('driver_id', $driver_id);
         $q2->execute();
         return true;
+    }
+
+    public function checkReponseDriver($temp1_id)
+    {
+        $q = $this->_db->prepare("SELECT * FROM t2 WHERE temp1_id=:temp1_id AND status=:status");
+        $q->bindvalue('temp1_id', $temp1_id);
+        $q->bindvalue('status', true);
+        $q->execute();
+        $d = $q->fetch(PDO::FETCH_ASSOC);
+        if (empty($d)) {
+            return NULL;
+        }else {
+            $data['driver'] = $d;
+            $q2 = $this->_db->prepare("SELECT * FROM t1 WHERE temp1_id=:temp1_id");
+            $q2->bindvalue('temp1_id', $temp1_id);
+            $q2->execute();
+            $d2 = $q2->fetch(PDO::FETCH_ASSOC);
+            $data['course'] = $d2;
+            $q3 = $this->_db->prepare("DELETE FROM t2  WHERE temp1_id=:temp1_id");
+            $q3->bindvalue('temp1_id', $temp1_id);
+            $q3->execute();
+            $q4 = $this->_db->prepare("DELETE FROM t1  WHERE temp1_id=:temp1_id");
+            $q4->bindvalue('temp1_id', $temp1_id);
+            $q4->execute();
+            return $data;
+        }
     }
 
 }

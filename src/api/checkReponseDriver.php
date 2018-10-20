@@ -3,23 +3,22 @@
  * Created by PhpStorm.
  * User: arino
  * Date: 20/10/2018
- * Time: 14:49
+ * Time: 18:02
  */
 
+
 require_once ('../bin/temp/TempManager.php');
-require_once ('../bin/course/course.php');
 require_once 'connect.php';
 
 
-if(isset($_GET['crs_date'])&&isset($_GET['usr_id'])&&isset($_GET['start_adr_id'])&&isset($_GET['end_adr_id'])&&$_GET['drivers'])
+if($_GET['temp1_id'])
 {
-    $course = new Course(array('crs_date'=>$_GET['crs_date'],'usr_id'=>$_GET['usr_id'],'start_adr_id'=>$_GET['start_adr_id'],'end_adr_id'=>$_GET['end_adr_id']));
     $tm = new  TempManager($db);
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: POST, GET");
-    $result = $tm->setCourseTmp($course, $_GET['drivers']);
-    echo json_encode($result);
+    $response = $tm->checkReponseDriver($_GET['temp1_id']);
+    echo json_encode($response);
 }
 else{
     header("Content-Type: application/json");
