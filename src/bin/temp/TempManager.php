@@ -59,4 +59,17 @@ class TempManager
         }
     }
 
+    public function getDriverCourseIfExist($driver_id)
+    {
+        $q = $this->_db->prepare("SELECT temp1_course  FROM temp1 t1 INNER JOIN temp2 t2 on t2.temp1_id = t1.temp1_id WHERE t2.driver_id = '$driver_id'");
+        $q->execute();
+        $aData = $q->fetch(PDO::FETCH_ASSOC);
+        if (empty($aData)) {
+            return NULL;
+        }else {
+
+            return $aData;
+        }
+    }
+
 }
