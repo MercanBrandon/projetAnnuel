@@ -109,7 +109,17 @@ class TempManager
         $q->execute();
         $d = $q->fetch(PDO::FETCH_ASSOC);
         if (empty($d)) {
-            return NULL;
+            $q2 = $this->_db->prepare("SELECT * FROM t1 WHERE temp1_id=:temp1_id");
+            $q2->bindvalue('temp1_id', $temp1_id);
+            $q2->execute();
+            $d3 = $q2->fetch(PDO::FETCH_ASSOC);
+            if (empty($d3)) {
+                return NULL;
+            }
+            else
+            {
+                return true;
+            }
         }else {
             $data['driver'] = $d;
             $q2 = $this->_db->prepare("SELECT * FROM t1 WHERE temp1_id=:temp1_id");
