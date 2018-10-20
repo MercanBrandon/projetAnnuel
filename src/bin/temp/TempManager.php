@@ -79,15 +79,24 @@ class TempManager
         $d = $q->fetch(PDO::FETCH_ASSOC);
         if (empty($d)) {
             $q2 = $this->_db->prepare("UPDATE t2 SET status =:status WHERE temp1_id=:temp1_id AND driver_id =:driver_id");
-            $q->bindvalue('status', true);
-            $q->bindvalue('temp1_id', $temp1_id);
-            $q->bindvalue('driver_id', $driver_id);
-            $q->execute();
+            $q2->bindvalue('status', true);
+            $q2->bindvalue('temp1_id', $temp1_id);
+            $q2->bindvalue('driver_id', $driver_id);
+            $q2->execute();
             return true;
         }else {
 
             return NULL;
         }
+    }
+
+    public function refusCourse($driver_id, $temp1_id)
+    {
+        $q2 = $this->_db->prepare("DELETE FROM t2  WHERE temp1_id=:temp1_id AND driver_id =:driver_id");
+        $q2->bindvalue('temp1_id', $temp1_id);
+        $q2->bindvalue('driver_id', $driver_id);
+        $q2->execute();
+        return true;
     }
 
 }
