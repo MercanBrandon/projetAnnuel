@@ -1,4 +1,15 @@
 <?php
+
+/*
+quand on cree la course en session on doit passer un tablau d'id de chauffeur 
+qu'il a trouver comme sa temp2 cré des relation entre chaque chauffeur et la course en session
+car tous les chauffeur on une demande pour cette coure et il peuvent accepter ou refuser 
+en se faisant il passe le status soit en valider soit en refuser et cela suprime la relation entre le chauffeur et la course en question
+
+Quand tu apelle l'api de validation on peux mettre false et cela veux die que la course a deja ete accepter par quelqu'un d'autre : il va choisir tous les chauffeur das les environ mai si un chauffeur a ete plus rapide que lui c'est tampis pour lui!
+
+*/
+
 /**
  * Created by PhpStorm.
  * User: arino

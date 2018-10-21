@@ -1,5 +1,5 @@
 <?php
-
+/* recupere tous les drivers a partir d'un point*/
 require_once ('../bin/driver/DriverManager.php');
 require_once 'connect.php';
 

@@ -6,6 +6,12 @@
  * Time: 14:49
  */
 
+/*
+si tous se passe bien il va retourner un id qui va correspondre a l'id temporaire de la course 
+on en a besoin pour la derneire api qui regarde si la reponse a ete valider
+
+*/
+
 require_once ('../bin/temp/TempManager.php');
 require_once ('../bin/course/course.php');
 require_once 'connect.php';

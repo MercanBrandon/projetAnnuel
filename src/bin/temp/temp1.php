@@ -1,4 +1,10 @@
 <?php
+/*
+ne course  sous forme d'un json pour garder la course mais pas la créé
+(une course temporaire en gros comme car ça ne va pas marcher en session car la session n'est pas propre au client)
+
+
+*/
 /**
  * Created by PhpStorm.
  * User: arino

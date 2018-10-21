@@ -6,6 +6,8 @@
  * Time: 17:41
  */
 
+/*true win et false mal parametré*/
+
 require_once ('../bin/temp/TempManager.php');
 require_once 'connect.php';
 

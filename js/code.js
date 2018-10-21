@@ -1,3 +1,4 @@
+//on doit implémenter sa a deux endroits premiere endroit c'est en attendant la reponse du chauffeur et l'autre c'est quand le chauffeur a ouvert son apli 
 // Interval d'appel 1000ms * 60 secondes * x minutes
 const interval = 1000 * 60 * 1
 // le endpoint mettre l'url de l'api

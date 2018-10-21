@@ -6,6 +6,8 @@
  * Time: 17:26
  */
 
+/* retourne null si quelqu'un a deja accepter false si on c'est tromper a l'apl d'api et true si ça fonctionne*/
+
 require_once ('../bin/temp/TempManager.php');
 require_once 'connect.php';
 
