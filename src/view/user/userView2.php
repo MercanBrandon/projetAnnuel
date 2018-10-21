@@ -1,25 +1,22 @@
-<?php session_start();
-include_once('bin/user/User.php');
-include_once('_header.php');
-   $user = unserialize($_SESSION['user']);
-   if ($user == NULL) {
-     header('Location: http://127.0.0.1/edsa-TME/connect.php');
-   }
-$title = 'Simple Map';
-
-//var_dump($_SESSION['user']);
- ?>
-<a href="deconnexion.php">Se deconnecter</a>
-
-<h1>Salut <?php printf($user->getUsr_firstname().", où allons nous aujourd'hui?"); ?></h1>
-<a class="btn" href="profil.php">Mon Profil</a>
+<a class="btn btn-dark" href="carte.php">Carte</a>
+<input type="text" id="pac-input" name="pac-input" value="">
  <div id="map"></div>
- <script>
+ <div class="map_from" id="map_from">
+   <input type="text" id="start_position" value="" placeholder="Départ" style="width:80%;">
+   <input type="text" id="destination_position" value="" placeholder="Arrivee" style="width:80%;">
+   <input type="submit" name="btn_go" value="An nou !!!">
+ </div>
+<script>
    var map;
+   var start_position;
+   var destination;
+   var txt_start = document.getElementById('start_position');
+   var txt_destination = document.getElementById('destination_position');
+
    function initMap() {
      map = new google.maps.Map(document.getElementById('map'), {
        center: {lat: 15.2798157, lng: -61.3357894},
-       zoom: 8,
+       zoom: 12,
        styles:[
            {
                "featureType": "administrative.country",
@@ -182,36 +179,31 @@ $title = 'Simple Map';
            }
        ]
      });
-     var infoWindow = new google.maps.InfoWindow({map: map});
 
-     // Try HTML5 geolocation.
-     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(function(position) {
-         var pos = {
-           lat: position.coords.latitude,
-           lng: position.coords.longitude
-         };
+     //Geolocation
+     if (navigator.geolocation.getCurrentPosition(function(position){
+       pos = {
+         lat: position.coords.latitude,
+         lng: position.coords.longitude
+       };
 
-         infoWindow.setPosition(pos);
-         infoWindow.setContent('Location found.');
-         map.setCenter(pos);
-       }, function() {
-         handleLocationError(true, infoWindow, map.getCenter());
-       });
-     } else {
-       // Browser doesn't support Geolocation
-       handleLocationError(false, infoWindow, map.getCenter());
-     }
-   }
+       infowindow.setPosition(pos);
+       infowindow.setContent('Mi Sé La Ou Yé');
+       txt_start.placeholder = 'Position Actuelle';
+     }, function(){
+       handleLocationError(true, infowindow, map.getCenter());
+     });
+   }else {
+     handleLocationError(false, infowindow, map.getcenter());
+   })
 
-   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-     infoWindow.setPosition(pos);
-     infoWindow.setContent(browserHasGeolocation ?
-                           'Error: The Geolocation service failed.' :
-                           'Error: Your browser doesn\'t support geolocation.');
+   var marker_end = new google.maps.Marker({
+     map:map,
+     animation: google.maps.Animation.DROP,
+     position: pos
+   });
    }
  </script>
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&callback=initMap"
- async defer></script>
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&libraries=places&callback=initMap"></script>
 </body>
 </html>
