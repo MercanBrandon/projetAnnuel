@@ -1,12 +1,17 @@
 <a class="btn btn-dark" href="carte.php">Carte</a>
 <input type="text" id="pac-input" name="pac-input" value="">
  <div id="map"></div>
+ <div class="map_form" id="map_form">
+   <input type="text" id="start_position" value="" placeholder="Départ" style="width:80%;">
+   <input type="text" id="destination_position" value="" placeholder="Arrivee" style="width:80%;">
+   <input type="submit" id="btn_go" value="An nou !!!">
+ </div>
 <script>
    var map;
    function initMap() {
      map = new google.maps.Map(document.getElementById('map'), {
        center: {lat: 15.2798157, lng: -61.3357894},
-       zoom: 8,
+       zoom: 12,
        styles:[
            {
                "featureType": "administrative.country",
@@ -169,25 +174,132 @@
            }
        ]
      });
-     var infoWindow = new google.maps.InfoWindow({map: map});
 
      // Try HTML5 geolocation.
      if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function(position) {
-         var pos = {
+         var start_position = {
            lat: position.coords.latitude,
            lng: position.coords.longitude
          };
 
-         infoWindow.setPosition(pos);
-         infoWindow.setContent('Location found.');
-         map.setCenter(pos);
+         infoWindow.setPosition(start_position);
+         infoWindow.setContent('Mi vou ... ');
+         map.setCenter(start_position);
+         txt_start.placeholder = 'Position Actuelle';
+         console.log(txt_start);
        }, function() {
          handleLocationError(true, infoWindow, map.getCenter());
        });
      } else {
        // Browser doesn't support Geolocation
        handleLocationError(false, infoWindow, map.getCenter());
+     }
+
+     //recuperation et
+     map.controls[google.maps.ControlPosition.TOP].push(map_form);
+     var txt_start = document.getElementById('start_position');
+     var start_position;
+
+     var txt_destination = document.getElementById('destination_position');
+     var end_position;
+
+     var infoWindow = new google.maps.InfoWindow({map: map});
+     var marker_origin = new google.maps.Marker({
+       map:map,
+       animation: google.maps.Animation.DROP
+     })
+     var marker_end = new google.maps.Marker({
+       map:map,
+       animation: google.maps.Animation.DROP
+     });
+
+     var auto_txt_start = new google.maps.places.Autocomplete(txt_start);
+     var auto_txt_destination = new google.maps.places.Autocomplete(txt_destination);
+     console.log(auto_txt_destination);
+
+     let origin;
+     auto_txt_start.addListener('place_changed', function () {
+       origin = auto_txt_start.getPlace();
+       if (!origin.geometry) {
+         window.alert("Nou pa kònèt "+origin.name);
+         return;
+       }
+       if (origin.geometry.viewport) {
+         map.fitBounds(origin.geometry.viewport);
+       }else {
+         map.setCenter(origin.geometry.viewport);
+         map.setZoom(15);
+       }
+       marker_origin.setPosition(origin.geometry.location);
+       console.log(origin);
+     })
+
+     let destination;
+     auto_txt_destination.addListener('place_changed', function() {
+       //infowindow.close();
+       //marker.setVisible(false);
+       destination = auto_txt_destination.getPlace();
+
+       if (!destination.geometry) {
+         // User entered the name of a Place that was not suggested and
+         // pressed the Enter key, or the Place Details request failed.
+         window.alert("No details available for input: '" + destination.name + "'");
+         return;
+       }
+
+       // If the place has a geometry, then present it on a map.
+       if (destination.geometry.viewport) {
+         map.fitBounds(destination.geometry.viewport);
+       } else {
+         map.setCenter(destination.geometry.location);
+         map.setZoom(15);
+       }
+       marker_end.setPosition(destination.geometry.location);
+       marker_end.setVisible(true);
+
+       /*var lat = destination.geometry.location.lat();
+       var lng = destination.geometry.location.lng();*/
+
+
+       //console.log(`https://waze.com/ul?ll=${lat},${lng}&navigate=yes`);
+
+       /*var address = '';
+       if (place.address_components) {
+         address = [
+           (place.address_components[0] && place.address_components[0].short_name || ''),
+           (place.address_components[1] && place.address_components[1].short_name || ''),
+           (place.address_components[2] && place.address_components[2].short_name || '')
+         ].join(' ');
+       }
+
+       infowindowContent.children['place-icon'].src = place.icon;
+       infowindowContent.children['place-name'].textContent = place.name;
+       infowindowContent.children['place-address'].textContent = address;
+       infowindow.open(map, marker);*/
+     });
+
+     document.getElementById("btn_go").onclick = function(){
+       //location.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+       let directionsDisplay = '';
+         console.log(destination);
+         console.log(origin);
+         directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map
+          });
+         var request = {
+          destination: destination.geometry.location,
+          origin: origin.geometry.location,
+          travelMode: 'DRIVING'
+        };
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+          }
+        });
+       
      }
    }
 
@@ -198,66 +310,11 @@
                            'Error: Your browser doesn\'t support geolocation.');
    }
 
-/*Google place*/
-   function initialize() {
-    var mapOptions = {
-      center: {lat: -33.8688, lng: 151.2195},
-      zoom: 13,
-      scrollwheel: false
-    };
-    var map = new google.maps.Map(document.getElementById('map'),
-      mapOptions);
-
-    var input = /** @type {HTMLInputElement} */(
-        document.getElementById('pac-input'));
-
-    // Create the autocomplete helper, and associate it with
-    // an HTML text input box.
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.bindTo('bounds', map);
-
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    var infowindow = new google.maps.InfoWindow();
-    var marker = new google.maps.Marker({
-      map: map
-    });
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map, marker);
-    });
-
-    // Get the full place details when the user selects a place from the
-    // list of suggestions.
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-      infowindow.close();
-      var place = autocomplete.getPlace();
-      if (!place.geometry) {
-        return;
-      }
-
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);
-      }
-
-      // Set the position of the marker using the place ID and location.
-      marker.setPlace(/** @type {!google.maps.Place} */ ({
-        placeId: place.place_id,
-        location: place.geometry.location
-      }));
-      marker.setVisible(true);
-
-      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-          'Place ID: ' + place.place_id + '<br>' +
-          place.formatted_address + '</div>');
-      infowindow.open(map, marker);
-    });
-  }
-
+<<<<<<< HEAD
   // Run the initialize function when the window has finished loading.
   //google.maps.event.addDomListener(window, 'load', initialize);
+=======
+>>>>>>> e1120fbd14dacdc9070bcf13e2d6b85dc1a4aaeb
  </script>
  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&libraries=places&callback=initMap"></script>
 </body>
