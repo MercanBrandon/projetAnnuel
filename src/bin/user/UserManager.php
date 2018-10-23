@@ -56,6 +56,20 @@ class UserManager
   }
   }
 
+  public function getUserByID($id)
+  {
+    $q = $this->_db->prepare("SELECT * FROM user WHERE usr_id = :id");
+    $q->execute(array(':id '=> $id));
+    $donnees = $q->fetch(PDO::FETCH_ASSOC);
+    if (empty($donnees)) {
+      return;
+    }
+    else {
+      $user = new User($donnees);
+      return $user;
+    }
+  }
+
   public function getUserList()
   {
     $q = $this->_db->prepare("SELECT * FROM user");

@@ -7,6 +7,30 @@
    <input type="submit" id="btn_go" value="An nou !!!">
  </div>
 <script>
+
+
+  function getXMLHttpRequest() {
+	var xhr = null;
+
+	if (window.XMLHttpRequest || window.ActiveXObject) {
+		if (window.ActiveXObject) {
+			try {
+				xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch(e) {
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		} else {
+			xhr = new XMLHttpRequest();
+		}
+	} else {
+		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+		return null;
+	}
+
+	return xhr;
+}
+
+
    var map;
    function initMap() {
      map = new google.maps.Map(document.getElementById('map'), {
@@ -178,14 +202,19 @@
      // Try HTML5 geolocation.
      if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function(position) {
-         var start_position = {
+         var init_position = {
            lat: position.coords.latitude,
            lng: position.coords.longitude
          };
 
-         infoWindow.setPosition(start_position);
+         console.log(init_position);
+         var xhr = new getXMLHttpRequest();
+         xhr.open("GET", "test.php?func=getDriverPoint&lat="+init_position.lat+"&lng="+init_position.lng+"", true);
+         xhr.send(null);
+
+         infoWindow.setPosition(init_position);
          infoWindow.setContent('Mi vou ... ');
-         map.setCenter(start_position);
+         map.setCenter(init_position);
          txt_start.placeholder = 'Position Actuelle';
          console.log(txt_start);
        }, function() {
@@ -199,7 +228,7 @@
      //recuperation et
      map.controls[google.maps.ControlPosition.TOP].push(map_form);
      var txt_start = document.getElementById('start_position');
-     var start_position;
+     //var start_position;
 
      var txt_destination = document.getElementById('destination_position');
      var end_position;
@@ -282,7 +311,7 @@
      document.getElementById("btn_go").onclick = function(){
        //location.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
        let directionsDisplay = '';
-         console.log(destination);
+         console.log(destination.geometry);
          console.log(origin);
          directionsDisplay = new google.maps.DirectionsRenderer({
             map: map
@@ -299,7 +328,6 @@
             directionsDisplay.setDirections(response);
           }
         });
-       
      }
    }
 
@@ -310,11 +338,6 @@
                            'Error: Your browser doesn\'t support geolocation.');
    }
 
-<<<<<<< HEAD
-  // Run the initialize function when the window has finished loading.
-  //google.maps.event.addDomListener(window, 'load', initialize);
-=======
->>>>>>> e1120fbd14dacdc9070bcf13e2d6b85dc1a4aaeb
  </script>
  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&libraries=places&callback=initMap"></script>
 </body>

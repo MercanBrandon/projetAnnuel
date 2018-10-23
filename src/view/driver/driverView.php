@@ -102,10 +102,14 @@
                     echo 'ID Chauffeur : '.$driver->getDrv_id().'<br>';
 
                     // echo $driver->getDrv_id();
-                    var_dump($driver->getDrv_id());
+                    var_dump($driver);
                 ?>
             </div>
         </div>
     </div>
 </div>
 </html>
+<script type="text/javascript">
+var driver_id = '<?php echo $driver->getUsr_name(); ?>';
+console.log(driver_id);
+</script>

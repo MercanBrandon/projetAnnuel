@@ -26,4 +26,6 @@ if ($userManager->driverTest($user->getUsr_id()) !=  NULL) {
 }else {
     include_once('view/user/userView.php');
 }
+
+
 ?>
