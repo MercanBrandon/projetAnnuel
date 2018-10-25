@@ -208,9 +208,9 @@
          };
 
          console.log(init_position);
-         var xhr = new getXMLHttpRequest();
-         xhr.open("GET", "test.php?func=getDriverPoint&lat="+init_position.lat+"&lng="+init_position.lng+"", true);
-         xhr.send(null);
+         if (init_position != false) {
+
+         }
 
          infoWindow.setPosition(init_position);
          infoWindow.setContent('Mi vou ... ');
@@ -260,9 +260,14 @@
          map.setCenter(origin.geometry.viewport);
          map.setZoom(15);
        }
+       console.log(origin.geometry.location);
        marker_origin.setPosition(origin.geometry.location);
-       console.log(origin);
+       var Ajax = new getXMLHttpRequest();
+       Ajax.open("GET", "api/getdrivers.php?&lat="+origin.geometry.location.lat()+"&lng="+origin.geometry.location.lng(), true);
+       Ajax.send();
+       console.log("api/getdrivers.php?&lat="+origin.geometry.location.lat()+"&lng="+origin.geometry.location.lng());
      })
+
 
      let destination;
      auto_txt_destination.addListener('place_changed', function() {

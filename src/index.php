@@ -11,7 +11,7 @@ require_once 'bin/user/UserManager.php';
 require_once 'bin/driver/DriverManager.php';
    $user = unserialize($_SESSION['user']);
    if ($user == NULL) {
-     header('Location: __DIR__/connect.php');
+     header('Location: /edsa-TME/connect.php');
    }
 $title = 'Simple Map';
 //$db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');

@@ -31,13 +31,16 @@ require_once __DIR__.'/../user/UserManager.php';
 
 
     */
-    public function getDriverPoint($geolocPoint)
+    public function getDriverPoint($lat,$lng)
     {
 
-      $geocor = json_decode($geolocPoint);
-      $x = $geocor->coordinates[0];
-      $y = $geocor->coordinates[1];
+      /*$geocor = json_decode($geolocPoint);
+      var_dump($geocor);
+      $x = $geocor.coordinates[0];
+      $y = $geocor.coordinates[1];*/
 
+      $x = $lng;
+      $y = $lat;
       $nbKM = 30;
 
       $const = 0.0089936 * $nbKM;
