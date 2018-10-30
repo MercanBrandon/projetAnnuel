@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 26 juil. 2018 à 09:20
+-- Généré le :  mar. 30 oct. 2018 à 07:41
 -- Version du serveur :  5.7.17
 -- Version de PHP :  5.6.30
 
@@ -30,20 +30,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adress` (
   `adr_id` int(11) NOT NULL,
-  `adr_libelle` char(50) DEFAULT NULL,
-  `adr_ligne1` char(25) DEFAULT NULL,
-  `adr_ligne2` char(25) DEFAULT NULL,
-  `adr_PC` int(11) DEFAULT NULL,
-  `adr_city_lib` char(50) DEFAULT NULL
+  `street_number` char(255) DEFAULT NULL,
+  `route` char(25) DEFAULT NULL,
+  `locality` char(25) DEFAULT NULL,
+  `administrative_area_2` char(255) DEFAULT NULL,
+  `administrative_area_1` char(255) DEFAULT NULL,
+  `country` char(255) NOT NULL,
+  `localisation` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `adress`
 --
 
-INSERT INTO `adress` (`adr_id`, `adr_libelle`, `adr_ligne1`, `adr_ligne2`, `adr_PC`, `adr_city_lib`) VALUES
-(1, 'Rouen', '63 rue moise', NULL, 76000, 'ROUEN'),
-(2, 'Petit-canal', 'Maisoncelle', NULL, 97131, 'PETIT-CANAL');
+INSERT INTO `adress` (`adr_id`, `street_number`, `route`, `locality`, `administrative_area_2`, `administrative_area_1`, `country`, `localisation`) VALUES
+(1, 'Rouen', '63 rue moise', NULL, '76000', 'ROUEN', '', 'null'),
+(2, 'Petit-canal', 'Maisoncelle', NULL, '97131', 'PETIT-CANAL', '', 'null');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,7 @@ CREATE TABLE `assign` (
 --
 
 INSERT INTO `assign` (`assign_start_date`, `assign_end_date`, `id_vehicule`, `drv_id`) VALUES
-('2018-07-13', NULL, 1, 2);
+('2018-07-13', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -98,6 +100,8 @@ CREATE TABLE `driver` (
   `drv_id` int(11) NOT NULL,
   `drv_hiring_date` date DEFAULT NULL,
   `drv_licence_date` date DEFAULT NULL,
+  `drv_status` int(11) NOT NULL,
+  `drv_position` json NOT NULL,
   `usr_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,8 +109,8 @@ CREATE TABLE `driver` (
 -- Déchargement des données de la table `driver`
 --
 
-INSERT INTO `driver` (`drv_id`, `drv_hiring_date`, `drv_licence_date`, `usr_id`) VALUES
-(1, '2018-05-29', '2015-10-01', 3);
+INSERT INTO `driver` (`drv_id`, `drv_hiring_date`, `drv_licence_date`, `drv_status`, `drv_position`, `usr_id`) VALUES
+(1, '2018-05-29', '2015-10-01', 0, '{\"type\": \"Point\", \"coordinates\": [2.4951571226119995, 48.83927887110058]}', 3);
 
 -- --------------------------------------------------------
 
