@@ -9,7 +9,7 @@ if(isset($_GET['geoPoint']))
 	header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: POST, GET");
-    echo json_encode($driver->getDriverPoint($_GET['geoPoint']));
+    echo json_encode($driver->getDriverPoint($_GET['lat'],$_GET['lng']));
 }
 
 
