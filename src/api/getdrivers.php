@@ -9,7 +9,15 @@ if(isset($_GET['geoPoint']))
 	header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: POST, GET");
-    echo json_encode($driver->getDriverPoint($_GET['lat'],$_GET['lng']));
+    echo json_encode($driver->getDriverPoints($_GET['lat'],$_GET['lng']));
+}
+else {
+	$driver = new DriverManager($db);
+	header("Content-Type: application/json");
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST, GET");
+    echo json_encode($driver->getAllDriver());
+		var_dump($driver->getAllDriver());
 }
 
 

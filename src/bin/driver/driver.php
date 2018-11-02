@@ -15,9 +15,9 @@ class Driver extends User
   protected $usr_id;
 
   // protected $usr_id;
-function __construct(array $donnees){
-  $this->hydrate($donnees);
-}
+// function __construct(array $donnees){
+//   $this->hydrate($donnees);
+// }
   function getDrv_id(){return $this->drv_id;}
   function getDrv_hiring_date(){return $this->drv_hiring_date;}
   function getDrv_licence_date(){return $this->drv_licence_date;}

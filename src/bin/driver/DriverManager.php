@@ -31,7 +31,19 @@ require_once __DIR__.'/../user/UserManager.php';
 
 
     */
-    public function getDriverPoint($lat,$lng)
+
+    public function getAllDriver()
+    {
+      $q = $this->_db->prepare("SELECT * FROM driver");
+      $q->execute();
+      $aData = $q->fetchAll(PDO::FETCH_OBJ);
+      if (empty($aData)) {
+        return NULL;
+      }else {
+        return $aData;
+      }
+    }
+    public function getDriverPoints($lat,$lng)
     {
 
       /*$geocor = json_decode($geolocPoint);
@@ -50,6 +62,8 @@ require_once __DIR__.'/../user/UserManager.php';
       $ymin = $y-$const;
       $ymax = $y+$const;
 
+      var_dump($xmin);
+      var_dump($xmax);
 
       $q = $this->_db->prepare("SELECT * FROM driver WHERE ST_CONTAINS(ST_GEOMFROMTEXT('POLYGON((".$xmin." ".$y.",".$x." ".$ymax.",".$xmax." ".$y.",".$x." ".$ymin.",".$xmin." ".$y."))',4326),ST_GeomFromGeoJSON(drv_position))=1");
       $q->execute();

@@ -4,7 +4,7 @@
  <div class="map_form" id="map_form">
    <input type="text" id="start_position" value="" placeholder="Départ" style="width:80%;">
    <input type="text" id="destination_position" value="" placeholder="Arrivee" style="width:80%;">
-   <input type="submit" id="btn_go" value="An nou !!!">
+   <input type="submit" id="btn_go" value="An nou !!!" class="">
  </div>
 <script>
 
