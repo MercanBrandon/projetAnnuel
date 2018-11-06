@@ -11,13 +11,15 @@ if(isset($_GET['geoPoint']))
     header("Access-Control-Allow-Methods: POST, GET");
     echo json_encode($driver->getDriverPoints($_GET['lat'],$_GET['lng']));
 }
-else {
+else
+{
 	$driver = new DriverManager($db);
 	header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: POST, GET");
-    echo json_encode($driver->getAllDriver());
-		var_dump($driver->getAllDriver());
+    $driver->getAllDriver();
+		//echo $drivers;
+		//var_dump($driver->getAllDriver());// QUESTION: a
 }
 
 

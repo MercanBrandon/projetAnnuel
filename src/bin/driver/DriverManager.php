@@ -17,7 +17,8 @@ require_once __DIR__.'/../user/UserManager.php';
       $q = $this->_db->prepare("SELECT u.*, d.* FROM driver d INNER JOIN user u on d.usr_id = u.usr_id WHERE d.usr_id = '$Usr_id'");
       $q->execute();
       //$aData = $q->fetch(PDO::FETCH_ASSOC);
-      $driver = $q->fetch(PDO::FETCH_OBJ);
+      $driver = $q->fetchAll(PDO::FETCH_CLASS, 'Driver');
+
       /*if (empty($aData)) {
         return NULL;
       }else {
@@ -36,13 +37,11 @@ require_once __DIR__.'/../user/UserManager.php';
     {
       $q = $this->_db->prepare("SELECT * FROM driver");
       $q->execute();
-      $aData = $q->fetchAll(PDO::FETCH_OBJ);
-      if (empty($aData)) {
-        return NULL;
-      }else {
-        return $aData;
-      }
+      $drivers = $q->fetchAll(PDO::FETCH_CLASS, 'Driver');
+      echo json_encode($q->fetchAll(PDO::FETCH_CLASS, 'Driver'));
     }
+
+
     public function getDriverPoints($lat,$lng)
     {
 

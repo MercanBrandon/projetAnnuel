@@ -12,8 +12,8 @@
   protected $usr_email;
   protected $usr_password;
 
-  function __construct(array $donnees){
-    $this->hydrate($donnees);
+function __construct(/*array $donnees*/){
+    //$this->hydrate($donnees);
   }
 
   public function hydrate(array $donnees)

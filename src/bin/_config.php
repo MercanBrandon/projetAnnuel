@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:dbname=dbtransportme;host=127.0.0.1';
+$dsn = 'mysql:dbname=dbtme;host=127.0.0.1';
 $user = 'root';
 $password = '';
 
