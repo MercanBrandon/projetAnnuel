@@ -4,7 +4,7 @@ $title = 'TransportMe';
 
 <div class="container">
   <article class="connect">
-  <h2 style="color:white;">Inscription</h2>
+  <center><h2 style="color:white;">Inscription</h2></center>
   <form class="form-connect" action="bin/connexion.php" method="post">
     <p><input name="usr_email" class="form-control" type="mail" id="mail" placeholder="Entrez votre Email" /></p>
 

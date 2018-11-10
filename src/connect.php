@@ -1,14 +1,16 @@
-<?php include_once '_header.php';
+<?php
+ session_start(); 
+include_once '_header.php';
 $title = 'TransportMe';
 ?>
     <div class="container">
       <article class="connect">
         <form class="form-connect" action="bin/connexion.php" method="post">
-          <h3>Bonjour :)</h3>
+          <center><h3>Bienvenue</h3></center>
           <p><input class="form-control" type="text" name="mail" value="" placeholder="e-mail"></p>
           <p><input type="password" name="password" value="" placeholder="password"></p>
           <p><input type="submit" name="submit" value="Se Connecter"></p>
-          <p><a href="inscription.php">Si tu n'as pas de compte Click Me !!!</a></p>
+          <center><p><a href="inscription.php">Si tu n'as pas de compte Click Me !!!</a></p></center>
         </form>
 
       </article>

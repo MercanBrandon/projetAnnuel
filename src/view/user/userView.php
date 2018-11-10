@@ -1,14 +1,13 @@
-<a class="btn btn-dark" href="carte.php">Carte</a>
-<input type="text" id="pac-input" name="pac-input" value="">
- <div id="map"></div>
- <div class="map_form" id="map_form">
-   <input type="text" id="start_position" value="" placeholder="Départ" style="width:80%;">
-   <input type="text" id="destination_position" value="" placeholder="Arrivee" style="width:80%;">
-   <input type="submit" id="btn_go" value="An nou !!!" class="">
- </div>
+
+<div id="map"></div>
+
+<div class="map_form" id="map_form">
+    <input type="text" class="form-control" id="start_position" value="" placeholder="Départ">
+    <input type="text" class="form-control" id="destination_position" value="" placeholder="Arrivee">
+    <input type="submit" class="btn btn-primary envoi" id="btn_go" value="C'est parti!">
+</div>
+
 <script>
-
-
   function getXMLHttpRequest() {
 	var xhr = null;
 

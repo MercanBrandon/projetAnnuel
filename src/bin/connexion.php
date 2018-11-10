@@ -25,8 +25,8 @@ elseif ($_POST['usr_email']!= NULL && $_POST['usr_email_confirm']!= NULL && $_PO
     $manager->createUser($_POST['usr_name'],$_POST['usr_firstname'],$_POST['usr_birthdate'],$_POST['usr_phone'],$_POST['usr_email'],$_POST['usr_password']);
   }
 }
-var_dump($user);
-//$_SESSION['user'] = $user;
+//var_dump($user);
+$_SESSION['user'] = $user;
 
 if ($user != NULL) {
   // $_SESSION['mail'] = $_POST['mail'];
