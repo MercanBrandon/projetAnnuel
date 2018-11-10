@@ -128,4 +128,28 @@ var driver_id = '<?php echo $driver->getUsr_ID(); ?>';
 var driver_lat = '<?php echo $driver->getDrv_lat(); ?>';
 var driver_lng = '<?php echo $driver->getDrv_lng(); ?>';
 
+function getXMLHttpRequest() {
+var xhr = null;
+if (window.XMLHttpRequest || window.ActiveXObject) {
+  if (window.ActiveXObject) {
+    try {
+      xhr = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch(e) {
+      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+  } else {
+    xhr = new XMLHttpRequest();
+  }
+} else {
+  alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+  return null;
+}
+return xhr;
+}
+var Ajax = new getXMLHttpRequest();
+var url = "api/setDriverPosition.php?lat="+driver_lat+"&lng="+driver_lng+"&id="+driver_id ;
+console.log(url);
+Ajax.open("GET", url , true);
+Ajax.send();
+
 </script>
