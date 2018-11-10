@@ -11,37 +11,40 @@ class Driver extends User
   protected $drv_hiring_date;
   protected $drv_licence_date;
   protected $drv_status;
-  protected $drv_position;
   protected $usr_id;
+  protected $drv_lat;
+  protected $drv_lng;
 
-  // protected $usr_id;
-// function __construct(array $donnees){
-//   $this->hydrate($donnees);
-// }
+  function __construct(array $donnees){
+    foreach ($donnees as $property => $value) {
+      if (property_exists(__CLASS__, $property)) {
+        $this->$property = $value;
+      }
+    }
+  }
+
   function getDrv_id(){return $this->drv_id;}
   function getDrv_hiring_date(){return $this->drv_hiring_date;}
   function getDrv_licence_date(){return $this->drv_licence_date;}
   function getDrv_status(){return $this->drv_status;}
-  function getDrv_position(){return $this->drv_position;}
-  function getUsr_id(){return $this->usr_id;}
+  function getDrv_lat(){return $this->drv_lat;}
+  function getDrv_lng(){return $this->drv_lng;}
 
 
   function setDrv_id($Drv_id){$this->Drv_id = $Drv_id;}
   function setDrv_hiring_date($Drv_hiring_date){$this->Drv_hiring_date = $Drv_hiring_date;}
   function setDrv_licence_date($Drv_licence_date){$this->Drv_licence_date = $Drv_licence_date;}
   function setDrv_status($drv_status){$this->drv_status = $drv_status;}
-  function setDrv_position($drv_position){$this->drv_position = $drv_position;}
   function setUsr_id($Usr_id){$this->Usr_id = $Usr_id;}
+  function setDrv_lat($drv_lat){$this->drv_lat = $drv_lat;}
+  function setDrv_lng($drv_lng){$this->drv_lng = $drv_lng;}
 
-  /*function getHiringDate(){
-    // TODO: si la date d'embauche n'est pas définie, la définir, sinon, modifier
-  }*/
 
-  /*public function getUsr_id()
+  public function getUsr_id()
   {
     $usr_id = parent::getUsr_id();
     return $usr_id;
-  }*/
+  }
 
 }
 

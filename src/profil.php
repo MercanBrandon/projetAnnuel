@@ -27,11 +27,17 @@ $adrMgmt = new AdressManager($db);
       <thead><th>N° Course</th><th>Date Course</th><th>Start Adress</th><th>End Adress</th>
       <?php
       $aCourse = $crsMgmt->listCourseByUserID($user->getUsr_id());
-      foreach ($aCourse as $key => $value) {
-        $objCourse = new Course($value);
-        printf('<tr><td><a href="course.php">'.$objCourse->getCrs_id().'</a></td><td>'.$objCourse->getCrs_date().'</td><td>'/*.$adrMgmt->showAdressByID($objCourse->getStart_adr_id())*/.'</td></tr>');
-        // printf($adrMgmt->showAdressByID($objCourse->getStart_adr_id()));
+      for ($i=0; $i < sizeof($aCourse) ; $i++) {
+        $objCourse = new Course($aCourse[$i]);
+        var_dump($objCourse);
+        printf('<tr><td><a href="course.php">'.$objCourse->getCrs_id().'</a></td><td>'.$objCourse->getCrs_date()/*.'</td><td>'.$adrMgmt->showAdressByID($objCourse->getStart_adr_id())*/.'</td></tr>');
       }
+      // foreach ($aCourse as $key => $value) {
+      //   $objCourse = new Course($value);
+      //   var_dump($objCourse);
+      //   printf('<tr><td><a href="course.php">'.$objCourse->getCrs_id().'</a></td><td>'.$objCourse->getCrs_date().'</td><td>'/*.$adrMgmt->showAdressByID($objCourse->getStart_adr_id())*/.'</td></tr>');
+      //   // printf($adrMgmt->showAdressByID($objCourse->getStart_adr_id()));
+      // }
       ?>
 
     </table>

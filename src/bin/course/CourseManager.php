@@ -51,7 +51,7 @@ class CourseManager
   {
     $q = $this->_db->prepare("SELECT * FROM course WHERE usr_id = '$id'" );
     $q->execute();
-    $courseArray = $q->fetchAll();
+    $courseArray = $q->fetchAll(PDO::FETCH_ASSOC);
     return $courseArray;
   }
 
@@ -59,7 +59,7 @@ class CourseManager
   {
     // TODO:
   }
-  
+
   public function setDb(PDO $db)
   {
     $this->_db = $db;

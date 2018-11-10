@@ -11,7 +11,7 @@ class Adress
   private $adr_PC;
   private $adr_city_lib;
 
-  function __construct(array $donnees){
+function __construct(array $donnees){
     $this->hydrate($donnees);
   }
 

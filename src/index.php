@@ -17,7 +17,7 @@ $title = 'Simple Map';
 //$db = new PDO('mysql:dbname=dbtme;host=127.0.0.1','root','');
 $userManager = new UserManager($db);
 $driverManager = new DriverManager($db);
-$driver = $driverManager->getDriver($user->getUsr_id());
+//$driver = $driverManager->getDriver($user->getUsr_id());
 
 echo '<h1>Salut '.$user->getUsr_firstname().'</h1>';
 echo '<a class="btn btn-dark" href="profil.php">Mon Profil</a><a class="btn btn-secondary"href="deconnexion.php">Se deconnecter</a>';
