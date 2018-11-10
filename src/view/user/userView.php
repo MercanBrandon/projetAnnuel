@@ -197,25 +197,21 @@
            }
        ]
      });
-
+     let init_position = {};
      // Try HTML5 geolocation.
      if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function(position) {
-         var init_position = {
+         init_position = {
            lat: position.coords.latitude,
            lng: position.coords.longitude
          };
 
-         console.log(init_position);
-         if (init_position != false) {
-
-         }
 
          infoWindow.setPosition(init_position);
          infoWindow.setContent('Mi vou ... ');
          map.setCenter(init_position);
          txt_start.placeholder = 'Position Actuelle';
-         console.log(txt_start);
+         //console.log(txt_start);
        }, function() {
          handleLocationError(true, infoWindow, map.getCenter());
        });
@@ -224,6 +220,7 @@
        handleLocationError(false, infoWindow, map.getCenter());
      }
 
+     //console.log(init_position);
      //recuperation et
      map.controls[google.maps.ControlPosition.TOP].push(map_form);
      var txt_start = document.getElementById('start_position');
@@ -244,9 +241,10 @@
 
      var auto_txt_start = new google.maps.places.Autocomplete(txt_start);
      var auto_txt_destination = new google.maps.places.Autocomplete(txt_destination);
-     console.log(auto_txt_destination);
+     //console.log(auto_txt_destination);
 
      let origin;
+
      auto_txt_start.addListener('place_changed', function () {
        origin = auto_txt_start.getPlace();
        if (!origin.geometry) {
@@ -259,12 +257,12 @@
          map.setCenter(origin.geometry.viewport);
          map.setZoom(15);
        }
-       console.log(origin.geometry.location);
+       //console.log(origin.geometry.location);
        marker_origin.setPosition(origin.geometry.location);
        var Ajax = new getXMLHttpRequest();
        Ajax.open("GET", "api/getdrivers.php?&lat="+origin.geometry.location.lat()+"&lng="+origin.geometry.location.lng(), true);
        Ajax.send();
-       console.log("api/getdrivers.php?&lat="+origin.geometry.location.lat()+"&lng="+origin.geometry.location.lng());
+       //console.log("api/getdrivers.php?&lat="+origin.geometry.location.lat()+"&lng="+origin.geometry.location.lng());
      })
 
 
@@ -314,9 +312,14 @@
 
      document.getElementById("btn_go").onclick = function(){
        //location.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+
+       if (txt_start.value = '') {
+         origin = init_position;
+         //console.log(init_position);
+       }
        let directionsDisplay = '';
-         console.log(destination.geometry);
-         console.log(origin);
+         //console.log(destination.geometry);
+         //console.log(origin);
          directionsDisplay = new google.maps.DirectionsRenderer({
             map: map
           });
@@ -332,6 +335,27 @@
             directionsDisplay.setDirections(response);
           }
         });
+        //console.log(origin);
+        //console.log(origin.place_id);
+        //console.log(origin.geometry);
+        let course = {
+          depart : {
+            id : origin.place_id,
+            lat : origin.geometry.location.lat(),
+            lng : origin.geometry.location.lng()
+          },
+          arrivee : {
+            id : destination.place_id,
+            lat : destination.geometry.location.lat(),
+            lng : destination.geometry.location.lng()
+          }
+        }
+
+        console.log(JSON.stringify(course));
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open("POST", "api/newcourse.php");
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send("course="+JSON.stringify(course));
      }
    }
 

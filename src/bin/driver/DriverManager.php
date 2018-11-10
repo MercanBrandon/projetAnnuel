@@ -16,16 +16,14 @@ require_once __DIR__.'/../user/UserManager.php';
     {
       $q = $this->_db->prepare("SELECT u.*, d.* FROM driver d INNER JOIN user u on d.usr_id = u.usr_id WHERE d.usr_id = '$Usr_id'");
       $q->execute();
-      //$aData = $q->fetch(PDO::FETCH_ASSOC);
-      $driver = $q->fetch(PDO::FETCH_OBJ);
-      /*if (empty($aData)) {
-        return NULL;
-      }else {
-        $driver = new Driver($aData);
-        return $driver;
-      }*/
-      var_dump($driver);
-      return $driver;
+      $oDriver = $q->fetch(PDO::FETCH_OBJ);
+      $aDriver = (array) $oDriver;
+       if (empty($aDriver)) {
+         return NULL;
+       }else {
+         $driver = new Driver($aDriver);
+         return $driver;
+       }
     }
     /*
 
@@ -62,12 +60,12 @@ require_once __DIR__.'/../user/UserManager.php';
       $ymin = $y-$const;
       $ymax = $y+$const;
 
-      var_dump($xmin);
-      var_dump($xmax);
+      //var_dump($xmin);
+      //var_dump($xmax);
 
       //drv_position => drv_position_x et drv_position_y
 
-      $q = $this->_db->prepare("SELECT * FROM driver WHERE drv_position_x > :xmin AND drv_position_x < :xmax AND drv_position_y > :ymin AND drv_position_y < :ymax");
+      $q = $this->_db->prepare("SELECT * FROM driver WHERE drv_lng > :xmin AND drv_lng < :xmax AND drv_lat > :ymin AND drv_lat < :ymax");
       $q->execute(['xmin'=>$xmin, 'xmax'=>$xmax, 'ymin' => $ymin, 'ymax' => $ymax]);
       $aData = $q->fetchAll(PDO::FETCH_ASSOC);
       if (empty($aData)) {

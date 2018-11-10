@@ -19,7 +19,6 @@
                     <tbody>
                 <?php
                     $driver = $driverManager->getDriver($user->getUsr_id());
-                    // var_dump($driver);
                     $aCourses = $driverManager->getCourses(1);
                     for ($i=0; $i < sizeof($aCourses) ; $i++) {
                         echo '<tr scope="row">';
@@ -101,15 +100,32 @@
                     echo 'Date permis : '.$driver->getDrv_licence_date().'<br>';
                     echo 'ID Chauffeur : '.$driver->getDrv_id().'<br>';
 
-                    // echo $driver->getDrv_id();
-                    var_dump($driver);
                 ?>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="jumbotron">
+                <h2>Recherche courses</h2>
+                <button type="button" id="btn_search_course">Rechercher une course</button>
             </div>
         </div>
     </div>
 </div>
 </html>
 <script type="text/javascript">
-var driver_id = '<?php echo $driver->getUsr_name(); ?>';
-console.log(driver_id);
+let init_position = {};
+// Try HTML5 geolocation.
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    init_position = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    console.log(init_position);
+  })
+}
+var driver_id = '<?php echo $driver->getUsr_ID(); ?>';
+var driver_lat = '<?php echo $driver->getDrv_lat(); ?>';
+var driver_lng = '<?php echo $driver->getDrv_lng(); ?>';
+
 </script>
