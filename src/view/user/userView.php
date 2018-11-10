@@ -28,9 +28,9 @@
 	return xhr;
 }
 
-
-   var map;
-   function initMap() {
+  var init_position = {};
+  var map;
+  function initMap() {
      map = new google.maps.Map(document.getElementById('map'), {
        center: {lat: 15.2798157, lng: -61.3357894},
        zoom: 12,
@@ -196,7 +196,7 @@
            }
        ]
      });
-     let init_position = {};
+     
      // Try HTML5 geolocation.
      if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function(position) {
@@ -210,6 +210,7 @@
          infoWindow.setContent('Mi vou ... ');
          map.setCenter(init_position);
          txt_start.placeholder = 'Position Actuelle';
+
          //console.log(txt_start);
        }, function() {
          handleLocationError(true, infoWindow, map.getCenter());
@@ -356,8 +357,8 @@
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send("course="+JSON.stringify(course));
      }
-   }
-
+  }
+  console.log(init_position);
    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
      infoWindow.setPosition(pos);
      infoWindow.setContent(browserHasGeolocation ?
@@ -394,9 +395,9 @@
           ;
         }
       });
-
   }
-  createMarkers(48.843569, 2.622365);
+
+  window.onload = function() {createMarkers(init_position.lat, init_position.lng)};
 
  </script>
  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&libraries=places&callback=initMap"></script>
