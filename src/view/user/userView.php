@@ -8,6 +8,7 @@
 </div>
 
 <script>
+
   function getXMLHttpRequest() {
 	var xhr = null;
 	if (window.XMLHttpRequest || window.ActiveXObject) {
@@ -363,6 +364,39 @@
                            'Error: The Geolocation service failed.' :
                            'Error: Your browser doesn\'t support geolocation.');
    }
+
+  function createMarkers(lat, long){
+      let i = 0 ;
+   // console.log("j'ai acces");
+    let url = `api/getdrivers.php?lat=${lat}&lng=${long}`;
+
+    let request = new Request(url, {
+      method: 'GET'
+    });
+    var result;
+
+    fetch(request)
+      .then( data => {
+        result = data;
+
+        for (var i = 0; i < result.length; i++) {
+            drv = result[i]
+
+          console.log(drv);
+
+            var marker_drv = new google.maps.Marker({
+                map:map,
+                animation: google.maps.Animation.DROP
+              })
+              let pos = new google.maps.LatLng(drv.drv_lat, drv.drv_lng);
+            marker_drv.setPosition(pos);
+            
+          ;
+        }
+      });
+
+  }
+  createMarkers(48.843569, 2.622365);
 
  </script>
  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLrGhNstPMZTs-NK9IyqyE6DWUf2zJwnI&libraries=places&callback=initMap"></script>

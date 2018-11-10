@@ -32,6 +32,8 @@ $driverManager = new DriverManager($db);
 
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Roboto+Condensed" rel="stylesheet">
 
+    <script type="text/javascript" src="public/js/recherche.js"> </script>
+
     <title>TransportMe</title>
   </head>
   <body id="index">
