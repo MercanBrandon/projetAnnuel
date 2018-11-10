@@ -113,20 +113,30 @@
 </div>
 </html>
 <script type="text/javascript">
-let init_position = {};
+var init_position = {};
 // Try HTML5 geolocation.
-if (navigator.geolocation) {
+setInterval(if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function(position) {
     init_position = {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
+    var driver_id = '<?php echo $driver->getDrv_ID(); ?>';
+    var driver_lat = init_position.lat;
+    var driver_lng = init_position.lng;
+
+
+    var Ajax = new getXMLHttpRequest();
+    var url = "api/setDriverPosition.php?lat="+driver_lat+"&lng="+driver_lng+"&id="+driver_id ;
+    console.log(url);
+    Ajax.open("GET", url , true);
+    Ajax.send();
     console.log(init_position);
   })
-}
-var driver_id = '<?php echo $driver->getUsr_ID(); ?>';
-var driver_lat = '<?php echo $driver->getDrv_lat(); ?>';
-var driver_lng = '<?php echo $driver->getDrv_lng(); ?>';
+},600000);
+
+
+
 
 function getXMLHttpRequest() {
 var xhr = null;
@@ -146,10 +156,6 @@ if (window.XMLHttpRequest || window.ActiveXObject) {
 }
 return xhr;
 }
-var Ajax = new getXMLHttpRequest();
-var url = "api/setDriverPosition.php?lat="+driver_lat+"&lng="+driver_lng+"&id="+driver_id ;
-console.log(url);
-Ajax.open("GET", url , true);
-Ajax.send();
+
 
 </script>
