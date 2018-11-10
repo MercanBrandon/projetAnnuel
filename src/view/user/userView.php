@@ -10,7 +10,6 @@
 <script>
   function getXMLHttpRequest() {
 	var xhr = null;
-
 	if (window.XMLHttpRequest || window.ActiveXObject) {
 		if (window.ActiveXObject) {
 			try {
@@ -25,7 +24,6 @@
 		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
 		return null;
 	}
-
 	return xhr;
 }
 
