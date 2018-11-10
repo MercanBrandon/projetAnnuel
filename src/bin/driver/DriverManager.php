@@ -60,11 +60,13 @@ require_once __DIR__.'/../user/UserManager.php';
       $ymin = $y-$const;
       $ymax = $y+$const;
 
-      var_dump($xmin);
-      var_dump($xmax);
+      //var_dump($xmin);
+      //var_dump($xmax);
 
-      $q = $this->_db->prepare("SELECT * FROM driver WHERE ST_CONTAINS(ST_GEOMFROMTEXT('POLYGON((".$xmin." ".$y.",".$x." ".$ymax.",".$xmax." ".$y.",".$x." ".$ymin.",".$xmin." ".$y."))',4326),ST_GeomFromGeoJSON(drv_position))=1");
-      $q->execute();
+      //drv_position => drv_position_x et drv_position_y
+
+      $q = $this->_db->prepare("SELECT * FROM driver WHERE drv_lng > :xmin AND drv_lng < :xmax AND drv_lat > :ymin AND drv_lat < :ymax");
+      $q->execute(['xmin'=>$xmin, 'xmax'=>$xmax, 'ymin' => $ymin, 'ymax' => $ymax]);
       $aData = $q->fetchAll(PDO::FETCH_ASSOC);
       if (empty($aData)) {
         return NULL;

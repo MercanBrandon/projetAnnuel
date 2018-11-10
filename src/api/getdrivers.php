@@ -3,7 +3,7 @@
 require_once ('../bin/driver/DriverManager.php');
 require_once 'connect.php';
 
-if(isset($_GET['geoPoint']))
+if(isset($_GET['lat'])&&isset($_GET['lng']))
 {
 	$driver = new DriverManager($db);
 	header("Content-Type: application/json");
